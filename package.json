@@ -1,0 +1,34 @@
+{
+  "name": "sveltex-unified",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/sveltex-unified.cjs.js",
+  "module": "dist/sveltex-unified.esm.js",
+  "browser": "dist/sveltex-unified.umd.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "jest --watch",
+    "build": "rollup -c"
+  },
+  "author": "Ate Poorthuis",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.1.0",
+    "rehype-stringify": "^6.0.1",
+    "remark-parse": "^7.0.2",
+    "remark-rehype": "^5.0.0",
+    "rollup": "^1.26.2",
+    "rollup-plugin-babel": "^4.2.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "unified": "^8.4.2"
+  }
+}
