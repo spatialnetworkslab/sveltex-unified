@@ -12,16 +12,17 @@ import prism from '@mapbox/rehype-prism'
 import svelte from '@snlab/refractor-svelte'
 
 // svelte blocks
-import svelteBlock from './svelteBlocks.js'
+import svelteInline from './svelteInline'
 
 const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
 
 export const processor = unified()
   .use(markdown)
-  // .use(svelteBlock)
-  .use(math)
-  .use(logger)
-  .use(remark2rehype)
-  .use(katex)
+  .use(svelteInline)
+  // .use(math)
+  // .use(logger)
+  .use(remark2rehype, { allowDangerousHTML: true })
+  // .use(logger)
+  // .use(katex)
   .use(prism, { registerSyntax: [svelte] })
-  .use(html)
+  .use(html, { allowDangerousHTML: true })

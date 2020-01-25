@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components 1`] = `"<p>hello</p>"`;
-
 exports[`paragraphs within else-if blocks should be terminated 1`] = `
-"<p>{#if a &#x3C; 10}
+"<p>{#if a < 10}
 One
 {:else if a == 10}
 Two

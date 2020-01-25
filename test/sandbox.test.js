@@ -20,10 +20,3 @@ test('paragraphs within else-if blocks should be terminated', () => {
   `)
   expect(input).toMatchSnapshot()
 })
-
-// test('components', () => {
-//   const input = process(dedent`
-//     <Test>hello</Test>
-//   `)
-//   expect(input).toMatchSnapshot()
-// })
