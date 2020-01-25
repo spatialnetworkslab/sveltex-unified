@@ -73,3 +73,16 @@ test('highlight svelte syntax', () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('paragraphs within else-if blocks should be terminated', () => {
+  const input = process(dedent`
+    {#if a < 10}
+    One
+    {:else if a == 10}
+    Two
+    {:else}
+    Three
+    {/if}
+  `)
+  expect(input).toMatchSnapshot()
+})

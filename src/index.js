@@ -11,9 +11,16 @@ import katex from 'rehype-katex'
 import prism from '@mapbox/rehype-prism'
 import svelte from '@snlab/refractor-svelte'
 
+// svelte blocks
+import svelteBlock from './svelteBlocks.js'
+
+const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
+
 export const processor = unified()
   .use(markdown)
+  // .use(svelteBlock)
   .use(math)
+  .use(logger)
   .use(remark2rehype)
   .use(katex)
   .use(prism, { registerSyntax: [svelte] })
