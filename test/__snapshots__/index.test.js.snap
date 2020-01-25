@@ -26,13 +26,13 @@ exports[`highlight svelte syntax 1`] = `
 `;
 
 exports[`paragraphs within else-if blocks should be terminated 1`] = `
-"<p>{#if a &#x3C; 10}
-One
+"{#if a < 10}
+<p>One</p>
 {:else if a == 10}
-Two
+<p>Two</p>
 {:else}
-Three
-{/if}</p>"
+<p>Three</p>
+{/if}"
 `;
 
 exports[`process math block equation 1`] = `

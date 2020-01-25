@@ -44,6 +44,10 @@ function attachParser (parser, options) {
 
     index++
 
+    if (silent) {
+      return true
+    }
+
     while (index < length) {
       character = value.charCodeAt(index)
       if (character === openCurly) {
