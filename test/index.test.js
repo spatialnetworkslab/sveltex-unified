@@ -36,3 +36,12 @@ test('process math block equation', () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('highlight code block syntax', () => {
+  const input = process(dedent`
+  \`\`\`js
+  var x = 1
+  \`\`\`
+  `)
+  expect(input).toMatchSnapshot()
+})

@@ -7,9 +7,13 @@ import remark2rehype from 'remark-rehype'
 import math from 'remark-math'
 import katex from 'rehype-katex'
 
+// syntax highlighting
+import prism from '@mapbox/rehype-prism'
+
 export const processor = unified()
   .use(markdown)
   .use(math)
   .use(remark2rehype)
   .use(katex)
+  .use(prism)
   .use(html)

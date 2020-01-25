@@ -1,5 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`highlight code block syntax 1`] = `
+"<pre class=\\"language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">var</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
+</code></pre>"
+`;
+
 exports[`process math block equation 1`] = `
 "<p>Using a block equation:</p>
 <div class=\\"math math-display\\"><span class=\\"katex-display\\"><span class=\\"katex\\"><span class=\\"katex-mathml\\"><math xmlns=\\"http://www.w3.org/1998/Math/MathML\\"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding=\\"application/x-tex\\">x + 1</annotation></semantics></math></span><span class=\\"katex-html\\" aria-hidden=\\"true\\"><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.66666em;vertical-align:-0.08333em;\\"></span><span class=\\"mord mathdefault\\">x</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span><span class=\\"mbin\\">+</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span></span><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span class=\\"mord\\">1</span></span></span></span></span></div>
