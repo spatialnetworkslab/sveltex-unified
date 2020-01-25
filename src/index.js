@@ -9,11 +9,12 @@ import katex from 'rehype-katex'
 
 // syntax highlighting
 import prism from '@mapbox/rehype-prism'
+import svelte from 'refractor-svelte'
 
 export const processor = unified()
   .use(markdown)
   .use(math)
   .use(remark2rehype)
   .use(katex)
-  .use(prism)
+  .use(prism, { registerSyntax: [svelte] })
   .use(html)

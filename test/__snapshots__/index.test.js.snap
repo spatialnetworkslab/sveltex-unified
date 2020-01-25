@@ -1,7 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`highlight code block html syntax 1`] = `
+"<pre class=\\"language-html\\"><code class=\\"language-html\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>li</span><span class=\\"token punctuation\\">></span></span>my list item<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>li</span><span class=\\"token punctuation\\">></span></span>
+</code></pre>"
+`;
+
 exports[`highlight code block syntax 1`] = `
 "<pre class=\\"language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">var</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
+</code></pre>"
+`;
+
+exports[`highlight svelte syntax 1`] = `
+"<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
+    <span class=\\"token keyword\\">let</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">7</span><span class=\\"token punctuation\\">;</span>
+  </span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>script</span><span class=\\"token punctuation\\">></span></span>
+
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>#<span class=\\"token keyword\\">if</span> x <span class=\\"token operator\\">></span> <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">}</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is greater than 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span> <span class=\\"token keyword\\">if</span> <span class=\\"token number\\">5</span> <span class=\\"token operator\\">></span> x<span class=\\"token punctuation\\">}</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is less than 5<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span><span class=\\"token punctuation\\">}</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is between 5 and 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token operator\\">/</span><span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">}</span></span>
 </code></pre>"
 `;
 

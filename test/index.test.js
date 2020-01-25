@@ -45,3 +45,31 @@ test('highlight code block syntax', () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('highlight code block html syntax', () => {
+  const input = process(dedent`
+  \`\`\`html
+  <li>my list item</li>
+  \`\`\`
+  `)
+  expect(input).toMatchSnapshot()
+})
+
+test('highlight svelte syntax', () => {
+  const input = process(dedent`
+  \`\`\`svelte
+    <script>
+      let x = 7;
+    </script>
+
+    {#if x > 10}
+      <p>{x} is greater than 10</p>
+    {:else if 5 > x}
+      <p>{x} is less than 5</p>
+    {:else}
+      <p>{x} is between 5 and 10</p>
+    {/if}
+  \`\`\`
+  `)
+  expect(input).toMatchSnapshot()
+})
