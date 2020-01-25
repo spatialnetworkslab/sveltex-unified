@@ -1,6 +1,18 @@
+import dedent from 'dedent'
 import { processor } from '../src/index.js'
 
-const parse = processor.processSync
+const process = md => {
+  return processor()
+    .processSync(md)
+    .toString()
+}
+
 test('process basic markdown correctly', () => {
-  expect(parse('# test').toString()).toBe('<h1>test</h1>')
+  const input = process(dedent`
+      # test
+  `)
+  const output = dedent`
+      <h1>test</h1>
+  `
+  expect(input).toBe(output)
 })
