@@ -9,7 +9,7 @@ import katex from 'rehype-katex'
 
 // syntax highlighting
 import prism from '@mapbox/rehype-prism'
-import svelte from 'refractor-svelte'
+import svelte from '@snlab/refractor-svelte'
 
 export const processor = unified()
   .use(markdown)
