@@ -29,5 +29,38 @@ export const processor = unified()
   .use(katex)
   .use(prism, { registerSyntax: [svelte] })
   .use(escapeCurlies)
-  // .use(logger)
   .use(html, { allowDangerousHTML: false })
+
+const defaults = {
+  extension: '.svelte',
+  pluginOptions: {}
+}
+
+export function sveltex ({
+  extension = '.svelte',
+  pluginOptions = {}
+} = defaults) {
+  return {
+    markup: ({ content, filename }) => {
+      if (extname(filename) !== extension) return
+      const html = processor()
+        .processSync(content)
+        .toString()
+      return {
+        code: `${html}`,
+        map: ''
+      }
+    },
+
+    script: ({ content, filename }) => {},
+
+    style: () => {}
+  }
+}
+
+// replacement of path import
+// from https://stackoverflow.com/a/1203361
+// thank you wallacer!
+function extname (filename) {
+  return filename.substring(filename.lastIndexOf('.'), filename.length) || filename
+}
