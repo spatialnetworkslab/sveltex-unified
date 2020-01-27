@@ -1,5 +1,5 @@
 {
-  "name": "sveltex-unified",
+  "name": "@snlab/sveltex-unified",
   "version": "0.0.4",
   "description": "",
   "main": "dist/sveltex-unified.cjs.js",
