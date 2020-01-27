@@ -6,9 +6,7 @@
 var xtend = require('xtend')
 var toHTML = require('@starptech/prettyhtml-hast-to-html')
 
-module.exports = stringify
-
-function stringify (config) {
+export default function stringify (config) {
   var settings = xtend(config, this.data('settings'))
 
   this.Compiler = compiler

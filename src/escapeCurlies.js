@@ -1,7 +1,7 @@
 const visit = require('unist-util-visit')
 const findAndReplace = require('hast-util-find-and-replace')
 
-module.exports = function transform () {
+export default function transform () {
   return function transformer (tree) {
     visit(tree, function (node) {
       if (node.type === 'element' && node.tagName === 'code') {

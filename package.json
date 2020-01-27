@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/sveltex-unified.cjs.js",
   "module": "dist/sveltex-unified.esm.js",
-  "browser": "dist/sveltex-unified.umd.js",
   "scripts": {
     "test": "jest",
     "dev": "jest --watch",
@@ -17,6 +16,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@mapbox/rehype-prism": "spatialnetworkslab/rehype-prism",
+    "@rollup/plugin-json": "^4.0.1",
     "@snlab/refractor-svelte": "0.0.2",
     "@starptech/prettyhtml-hast-to-html": "^0.10.0",
     "dedent": "^0.7.0",

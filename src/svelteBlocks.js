@@ -1,14 +1,12 @@
 var util = require('./util')
 
-module.exports = svelteBlock
-
 const openCurly = '{'
 const closeCurly = '}'
 
 const tab = '\t'
 const space = ' '
 
-function svelteBlock (options) {
+export default function svelteBlock (options) {
   const parser = this.Parser
   const compiler = this.Compiler
 

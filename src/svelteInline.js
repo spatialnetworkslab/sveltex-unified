@@ -1,11 +1,9 @@
 var util = require('./util')
 
-module.exports = svelteInline
-
 const openCurly = 123 // '{'
 const closeCurly = 125 // '{'
 
-function svelteInline (options) {
+export default function svelteInline (options) {
   const parser = this.Parser
   const compiler = this.Compiler
 
