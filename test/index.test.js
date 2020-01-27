@@ -74,6 +74,17 @@ test('highlight svelte syntax', () => {
   expect(input).toMatchSnapshot()
 })
 
+test('curlies in code blocks are escaped', () => {
+  const input = process(dedent`
+      \`\`\`svelte
+      {#if x > 10}
+        <p>{x} is greater than 10</p>
+      {/if}
+    \`\`\`
+  `)
+  expect(input).toMatchSnapshot()
+})
+
 test('paragraphs within else-if blocks should be terminated', () => {
   const input = process(dedent`
     {#if a < 10}

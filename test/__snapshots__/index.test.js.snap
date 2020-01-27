@@ -1,7 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`curlies in code blocks are escaped 1`] = `
+"<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span>#<span class=\\"token keyword\\">if</span> x <span class=\\"token operator\\">&#62;</span> <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">&#125;</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token language-javascript\\"
+><span class=\\"token punctuation\\">&#123;</span>x<span class=\\"token punctuation\\">&#125;</span></span> is greater than 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token operator\\">/</span><span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">&#125;</span></span>
+</code></pre>"
+`;
+
 exports[`highlight code block html syntax 1`] = `
-"<pre class=\\"language-html\\"><code class=\\"language-html\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>li</span><span class=\\"token punctuation\\">></span></span>my list item<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>li</span><span class=\\"token punctuation\\">></span></span>
+"<pre class=\\"language-html\\"><code class=\\"language-html\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>li</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>my list item<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>li</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
 </code></pre>"
 `;
 
@@ -11,17 +28,43 @@ exports[`highlight code block syntax 1`] = `
 `;
 
 exports[`highlight svelte syntax 1`] = `
-"<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>script</span><span class=\\"token punctuation\\">></span></span><span class=\\"token script\\"><span class=\\"token language-javascript\\">
+"<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token script\\"
+><span class=\\"token language-javascript\\">
     <span class=\\"token keyword\\">let</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">7</span><span class=\\"token punctuation\\">;</span>
-  </span></span><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>script</span><span class=\\"token punctuation\\">></span></span>
+  </span></span><span
+  class=\\"token tag\\"
+><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
 
-  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>#<span class=\\"token keyword\\">if</span> x <span class=\\"token operator\\">></span> <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">}</span></span>
-    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is greater than 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
-  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span> <span class=\\"token keyword\\">if</span> <span class=\\"token number\\">5</span> <span class=\\"token operator\\">></span> x<span class=\\"token punctuation\\">}</span></span>
-    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is less than 5<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
-  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span><span class=\\"token punctuation\\">}</span></span>
-    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;</span>p</span><span class=\\"token punctuation\\">></span></span><span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span>x<span class=\\"token punctuation\\">}</span></span> is between 5 and 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#x3C;/</span>p</span><span class=\\"token punctuation\\">></span></span>
-  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">{</span><span class=\\"token operator\\">/</span><span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">}</span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span>#<span class=\\"token keyword\\">if</span> x <span class=\\"token operator\\">&#62;</span> <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">&#125;</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token language-javascript\\"
+><span class=\\"token punctuation\\">&#123;</span>x<span class=\\"token punctuation\\">&#125;</span></span> is greater than 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span> <span class=\\"token keyword\\">if</span> <span class=\\"token number\\">5</span> <span class=\\"token operator\\">&#62;</span> x<span class=\\"token punctuation\\">&#125;</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token language-javascript\\"
+><span class=\\"token punctuation\\">&#123;</span>x<span class=\\"token punctuation\\">&#125;</span></span> is less than 5<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token punctuation\\">:</span><span class=\\"token keyword\\">else</span><span class=\\"token punctuation\\">&#125;</span></span>
+    <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token language-javascript\\"
+><span class=\\"token punctuation\\">&#123;</span>x<span class=\\"token punctuation\\">&#125;</span></span> is between 5 and 10<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>p</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token operator\\">/</span><span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">&#125;</span></span>
 </code></pre>"
 `;
 
@@ -37,8 +80,48 @@ exports[`paragraphs within else-if blocks should be terminated 1`] = `
 
 exports[`process math block equation 1`] = `
 "<p>Using a block equation:</p>
-<div class=\\"math math-display\\"><span class=\\"katex-display\\"><span class=\\"katex\\"><span class=\\"katex-mathml\\"><math xmlns=\\"http://www.w3.org/1998/Math/MathML\\"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding=\\"application/x-tex\\">x + 1</annotation></semantics></math></span><span class=\\"katex-html\\" aria-hidden=\\"true\\"><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.66666em;vertical-align:-0.08333em;\\"></span><span class=\\"mord mathdefault\\">x</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span><span class=\\"mbin\\">+</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span></span><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span class=\\"mord\\">1</span></span></span></span></span></div>
+<div class=\\"math math-display\\"><span class=\\"katex-display\\"><span class=\\"katex\\"><span class=\\"katex-mathml\\"><math xmlns=\\"http://www.w3.org/1998/Math/MathML\\"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation
+  encoding=\\"application/x-tex\\"
+>x + 1</annotation></semantics></math></span><span
+  class=\\"katex-html\\"
+  aria-hidden=\\"true\\"
+><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.66666em;vertical-align:-0.08333em;\\"></span><span
+  class=\\"mord mathdefault\\"
+>x</span><span
+  class=\\"mspace\\"
+  style=\\"margin-right:0.2222222222222222em;\\"
+></span><span
+  class=\\"mbin\\"
+>+</span><span
+  class=\\"mspace\\"
+  style=\\"margin-right:0.2222222222222222em;\\"
+></span></span><span
+  class=\\"base\\"
+><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span
+  class=\\"mord\\"
+>1</span></span></span></span></span></div>
 <p>Continue with normal paragraph</p>"
 `;
 
-exports[`process math inline equation 1`] = `"<p>Inline equation <span class=\\"math math-inline\\"><span class=\\"katex\\"><span class=\\"katex-mathml\\"><math xmlns=\\"http://www.w3.org/1998/Math/MathML\\"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding=\\"application/x-tex\\">x + 1</annotation></semantics></math></span><span class=\\"katex-html\\" aria-hidden=\\"true\\"><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.66666em;vertical-align:-0.08333em;\\"></span><span class=\\"mord mathdefault\\">x</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span><span class=\\"mbin\\">+</span><span class=\\"mspace\\" style=\\"margin-right:0.2222222222222222em;\\"></span></span><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span class=\\"mord\\">1</span></span></span></span></span></p>"`;
+exports[`process math inline equation 1`] = `
+"<p>Inline equation <span class=\\"math math-inline\\"><span class=\\"katex\\"><span class=\\"katex-mathml\\"><math xmlns=\\"http://www.w3.org/1998/Math/MathML\\"><semantics><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow><annotation
+  encoding=\\"application/x-tex\\"
+>x + 1</annotation></semantics></math></span><span
+  class=\\"katex-html\\"
+  aria-hidden=\\"true\\"
+><span class=\\"base\\"><span class=\\"strut\\" style=\\"height:0.66666em;vertical-align:-0.08333em;\\"></span><span
+  class=\\"mord mathdefault\\"
+>x</span><span
+  class=\\"mspace\\"
+  style=\\"margin-right:0.2222222222222222em;\\"
+></span><span
+  class=\\"mbin\\"
+>+</span><span
+  class=\\"mspace\\"
+  style=\\"margin-right:0.2222222222222222em;\\"
+></span></span><span
+  class=\\"base\\"
+><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span
+  class=\\"mord\\"
+>1</span></span></span></span></span></p>"
+`;
