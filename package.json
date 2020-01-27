@@ -1,6 +1,6 @@
 {
   "name": "sveltex-unified",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "dist/sveltex-unified.cjs.js",
   "module": "dist/sveltex-unified.esm.js",
