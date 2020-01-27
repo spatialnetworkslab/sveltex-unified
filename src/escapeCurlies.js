@@ -1,5 +1,5 @@
-const visit = require('unist-util-visit')
-const findAndReplace = require('hast-util-find-and-replace')
+import visit from 'unist-util-visit'
+import findAndReplace from 'hast-util-find-and-replace'
 
 export default function transform () {
   return function transformer (tree) {

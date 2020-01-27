@@ -39,6 +39,7 @@
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "unified": "^8.4.2",
+    "unist-util-visit": "^2.0.1",
     "xtend": "^4.0.2"
   }
 }

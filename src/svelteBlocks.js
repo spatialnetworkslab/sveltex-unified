@@ -1,4 +1,4 @@
-var util = require('./util')
+import * as util from './util'
 
 const openCurly = '{'
 const closeCurly = '}'
