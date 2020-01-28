@@ -1,10 +1,10 @@
 import { parse as tokenizeWords } from 'space-separated-tokens'
 import hash from 'object-hash'
-const fs = require('fs')
-const path = require('path')
-const glob = require('glob')
-const yaml = require('js-yaml')
-const request = require('sync-request')
+import fs from 'fs'
+import path from 'path'
+import glob from 'glob'
+import yaml from 'js-yaml'
+import request from 'sync-request'
 
 export default function codesandbox (node, config, tokenize) {
   const props = tokenizeWords(config)
