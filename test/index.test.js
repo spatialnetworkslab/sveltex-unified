@@ -97,3 +97,11 @@ test('paragraphs within else-if blocks should be terminated', () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('codesandbox container processes correctly', () => {
+  const input = process(dedent`
+    ::: codesandbox ./test/codesandbox/ some?props
+    :::
+  `)
+  expect(input).toMatchSnapshot()
+})

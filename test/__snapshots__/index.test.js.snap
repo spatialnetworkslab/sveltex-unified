@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`codesandbox container processes correctly 1`] = `
+"<iframe
+  src=\\"https://codesandbox.io/embed/ix5q0?some?props\\"
+  sandbox=\\"allow-modals allow-forms allow-popups allow-scripts allow-same-origin\\"
+  style=\\"width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden\\"
+></iframe>"
+`;
+
 exports[`curlies in code blocks are escaped 1`] = `
 "<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span>#<span class=\\"token keyword\\">if</span> x <span class=\\"token operator\\">&#62;</span> <span class=\\"token number\\">10</span><span class=\\"token punctuation\\">&#125;</span></span>
     <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>p</span><span

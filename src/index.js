@@ -18,10 +18,23 @@ import svelteInline from './svelteInline.js'
 // escape curlies
 import escapeCurlies from './escapeCurlies.js'
 
+// containers
+import containers from 'remark-containers'
+import codesandbox from './codeSandBox.js'
+
 const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
 
 export const processor = unified()
   .use(markdown)
+  .use(containers, {
+    custom: [
+      {
+        type: 'codesandbox',
+        element: 'iframe',
+        transform: codesandbox
+      }
+    ]
+  })
   .use(svelteInline)
   .use(svelteBlock)
   .use(math)
