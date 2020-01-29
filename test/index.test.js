@@ -1,14 +1,14 @@
 import dedent from 'dedent'
 import { processor } from '../src/index.js'
 
-const process = md => {
-  return processor()
-    .processSync(md)
-    .toString()
+const process = async (md) => {
+  const result = await processor()
+    .process(md)
+  return result.toString()
 }
 
-test('process basic markdown correctly', () => {
-  const input = process(dedent`
+test('process basic markdown correctly', async () => {
+  const input = await process(dedent`
       # test
   `)
   const output = dedent`
@@ -17,15 +17,15 @@ test('process basic markdown correctly', () => {
   expect(input).toBe(output)
 })
 
-test('process math inline equation', () => {
-  const input = process(dedent`
+test('process math inline equation', async () => {
+  const input = await process(dedent`
       Inline equation $x + 1$
   `)
   expect(input).toMatchSnapshot()
 })
 
-test('process math block equation', () => {
-  const input = process(dedent`
+test('process math block equation', async () => {
+  const input = await process(dedent`
       Using a block equation:
 
       $$
@@ -37,8 +37,8 @@ test('process math block equation', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('highlight code block syntax', () => {
-  const input = process(dedent`
+test('highlight code block syntax', async () => {
+  const input = await process(dedent`
   \`\`\`js
   var x = 1
   \`\`\`
@@ -46,8 +46,8 @@ test('highlight code block syntax', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('highlight code block html syntax', () => {
-  const input = process(dedent`
+test('highlight code block html syntax', async () => {
+  const input = await process(dedent`
   \`\`\`html
   <li>my list item</li>
   \`\`\`
@@ -55,8 +55,8 @@ test('highlight code block html syntax', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('highlight svelte syntax', () => {
-  const input = process(dedent`
+test('highlight svelte syntax', async () => {
+  const input = await process(dedent`
   \`\`\`svelte
     <script>
       let x = 7;
@@ -74,8 +74,8 @@ test('highlight svelte syntax', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('curlies in code blocks are escaped', () => {
-  const input = process(dedent`
+test('curlies in code blocks are escaped', async () => {
+  const input = await process(dedent`
       \`\`\`svelte
       {#if x > 10}
         <p>{x} is greater than 10</p>
@@ -85,8 +85,8 @@ test('curlies in code blocks are escaped', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('paragraphs within else-if blocks should be terminated', () => {
-  const input = process(dedent`
+test('paragraphs within else-if blocks should be terminated', async () => {
+  const input = await process(dedent`
     {#if a < 10}
     One
     {:else if a == 10}
@@ -98,8 +98,8 @@ test('paragraphs within else-if blocks should be terminated', () => {
   expect(input).toMatchSnapshot()
 })
 
-test('codesandbox container processes correctly', () => {
-  const input = process(dedent`
+test('codesandbox container processes correctly', async () => {
+  const input = await process(dedent`
     ::: codesandbox ./test/codesandbox/ some?props
     :::
   `)

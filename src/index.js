@@ -20,7 +20,8 @@ import escapeCurlies from './escapeCurlies.js'
 
 // containers
 import containers from 'remark-containers'
-import codesandbox from './codeSandBox.js'
+import csbBlock from './codeSandBoxBlock.js'
+import csbUpload from './codeSandBoxUpload.js'
 
 const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
 
@@ -31,10 +32,11 @@ export const processor = unified()
       {
         type: 'codesandbox',
         element: 'iframe',
-        transform: codesandbox
+        transform: csbBlock
       }
     ]
   })
+  .use(csbUpload)
   .use(svelteInline)
   .use(svelteBlock)
   .use(math)
@@ -54,11 +56,11 @@ export function sveltex ({
   pluginOptions = {}
 } = defaults) {
   return {
-    markup: ({ content, filename }) => {
+    markup: async ({ content, filename }) => {
       if (extname(filename) !== extension) return
-      const html = processor()
-        .processSync(content)
-        .toString()
+      const result = await processor()
+        .process(content)
+      const html = result.toString()
       return {
         code: `${html}`,
         map: ''
