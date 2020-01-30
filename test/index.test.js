@@ -105,3 +105,12 @@ test('codesandbox container processes correctly', async () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('default container processes correctly', async () => {
+  const input = await process(dedent`
+    ::: div testClass
+      some text here
+    :::
+  `)
+  expect(input).toMatchSnapshot()
+})

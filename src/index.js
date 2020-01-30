@@ -28,6 +28,7 @@ const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); ret
 export const processor = unified()
   .use(markdown)
   .use(containers, {
+    default: true,
     custom: [
       {
         type: 'codesandbox',

@@ -21,6 +21,8 @@ exports[`curlies in code blocks are escaped 1`] = `
 </code></pre>"
 `;
 
+exports[`default container processes correctly 1`] = `"<div class=\\"testClass\\"><p>  some text here</p></div>"`;
+
 exports[`highlight code block html syntax 1`] = `
 "<pre class=\\"language-html\\"><code class=\\"language-html\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>li</span><span
   class=\\"token punctuation\\"
