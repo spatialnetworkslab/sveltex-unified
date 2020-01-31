@@ -158,5 +158,22 @@ exports[`svelte blocks are processed correctly 1`] = `
 <script>
     export let fill = 'black'
 </script>
-<p><Component cx={3} cy={3} r={3} {fill}/></p>"
+<p>Test</p>
+<Component cx={3} cy={3} r={3} {fill}>
+  Test
+</Componet>"
+`;
+
+exports[`svelte elements are processed correctly 1`] = `
+"<p>Inline component <Component />
+<Component cx={3} cy={3} r={3}>
+Test
+</Component></p>"
+`;
+
+exports[`svelte shorthand attrs are processed correctly 1`] = `
+"<p>Inline component <span {x}>my span</span></p>
+<Component cx={3} cy={3} r={3} {fill}>
+  Test
+</Component>"
 `;

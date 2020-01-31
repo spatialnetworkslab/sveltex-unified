@@ -141,6 +141,27 @@ test('svelte blocks are processed correctly', async () => {
   expect(input).toMatchSnapshot()
 })
 
+test('svelte elements are processed correctly', async () => {
+  const input = await process(dedent`
+    Inline component <Component />
+    <Component cx={3} cy={3} r={3}>
+      Test
+    </Component>
+  `)
+  expect(input).toMatchSnapshot()
+})
+
+test('svelte shorthand attrs are processed correctly', async () => {
+  const input = await process(dedent`
+    Inline component <span {x}>my span</span>
+
+    <Component cx={3} cy={3} r={3} {fill}>
+      Test
+    </Component>
+  `)
+  expect(input).toMatchSnapshot()
+})
+
 test('codesandbox container processes correctly', async () => {
   const input = await process(dedent`
     ::: codesandbox ./test/codesandbox/ some?props

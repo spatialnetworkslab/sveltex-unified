@@ -15,6 +15,8 @@ import svelte from '@snlab/refractor-svelte'
 import svelteBlock from './svelteBlocks.js'
 import svelteInline from './svelteInline.js'
 import htmlBlocks from 'remark-parse/lib/block-elements.js'
+import svelteElementBlock from './svelteElementBlocks.js'
+import svelteElementInline from './svelteElementInline.js'
 
 // escape curlies
 import escapeCurlies from './escapeCurlies.js'
@@ -48,8 +50,9 @@ export const processor = unified()
   })
   .use(csbUpload)
   .use(svelteInline)
-  .use(logger)
   .use(svelteBlock)
+  .use(svelteElementBlock)
+  .use(svelteElementInline)
   .use(math)
   .use(remark2rehype, { allowDangerousHTML: true })
   .use(katex)
