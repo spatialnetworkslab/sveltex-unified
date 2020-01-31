@@ -26,6 +26,9 @@ import containers from 'remark-containers'
 import csbBlock from './codeSandBoxBlock.js'
 import csbUpload from './codeSandBoxUpload.js'
 
+// exec code blocks
+import execCodeBlocks from './execCodeBlocks.js'
+
 const blocks = htmlBlocks.concat([
   'svelte:self',
   'svelte:component',
@@ -54,6 +57,7 @@ export const processor = unified()
   .use(svelteElementBlock)
   .use(svelteElementInline)
   .use(math)
+  .use(execCodeBlocks)
   .use(remark2rehype, { allowDangerousHTML: true })
   .use(katex)
   .use(prism, { registerSyntax: [svelte] })

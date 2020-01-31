@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`process html exec echo code block 1`] = `
+"<pre><code class=\\"echo_html\\">&#60;p&#62;test&#60;/p&#62;
+</code></pre>
+<div class=\\"exec_html\\"><p>test</p></div>"
+`;
+
+exports[`process js exec code block and normal script block 1`] = `
+"<script>
+
+    let d = 'e'
+
+let a = 'b'
+let c = 1
+</script>
+
+<p>{ a }</p>"
+`;
+
+exports[`process js exec echo code block 1`] = `
+"<script>
+let a = 'b'
+let c = 1
+</script>
+
+<pre class=\\"language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">let</span> a <span class=\\"token operator\\">=</span> <span class=\\"token string\\">&#39;b&#39;</span>
+<span class=\\"token keyword\\">let</span> c <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
+</code></pre>
+<p>{ a }</p>"
+`;
+
+exports[`process js module code block 1`] = `
+"<script context=\\"module\\">
+
+    let d = 'e'
+
+let x = 'b'
+let y = 1
+</script>
+
+<p>{ a }</p>"
+`;
+
+exports[`process multiple js exec code blocks 1`] = `
+"<script>
+let a = 'b'
+let c = 1
+let d = 'b'
+let e = 1
+</script>
+
+<p>{ a }</p>"
+`;
