@@ -14,6 +14,7 @@ import svelte from '@snlab/refractor-svelte'
 // svelte blocks
 import svelteBlock from './svelteBlocks.js'
 import svelteInline from './svelteInline.js'
+import htmlBlocks from 'remark-parse/lib/block-elements.js'
 
 // escape curlies
 import escapeCurlies from './escapeCurlies.js'
@@ -23,10 +24,18 @@ import containers from 'remark-containers'
 import csbBlock from './codeSandBoxBlock.js'
 import csbUpload from './codeSandBoxUpload.js'
 
+const blocks = htmlBlocks.concat([
+  'svelte:self',
+  'svelte:component',
+  'svelte:window',
+  'svelte:body',
+  'svelte:head',
+  'svelte:options'
+])
 const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
 
 export const processor = unified()
-  .use(markdown)
+  .use(markdown, { blocks: blocks })
   .use(containers, {
     default: true,
     custom: [
@@ -39,6 +48,7 @@ export const processor = unified()
   })
   .use(csbUpload)
   .use(svelteInline)
+  .use(logger)
   .use(svelteBlock)
   .use(math)
   .use(remark2rehype, { allowDangerousHTML: true })

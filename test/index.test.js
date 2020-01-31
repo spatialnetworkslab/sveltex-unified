@@ -55,7 +55,7 @@ test('highlight code block html syntax', async () => {
   expect(input).toMatchSnapshot()
 })
 
-test('highlight svelte syntax', async () => {
+test('highlight code block svelte syntax', async () => {
   const input = await process(dedent`
   \`\`\`svelte
     <script>
@@ -85,6 +85,13 @@ test('curlies in code blocks are escaped', async () => {
   expect(input).toMatchSnapshot()
 })
 
+test('curlies in in-line code are escaped', async () => {
+  const input = await process(dedent`
+    A normal paragraph with \`{svelte}\` syntax
+  `)
+  expect(input).toMatchSnapshot()
+})
+
 test('paragraphs within else-if blocks should be terminated', async () => {
   const input = await process(dedent`
     {#if a < 10}
@@ -94,6 +101,42 @@ test('paragraphs within else-if blocks should be terminated', async () => {
     {:else}
     Three
     {/if}
+  `)
+  expect(input).toMatchSnapshot()
+})
+
+test('svelte blocks are processed correctly', async () => {
+  const input = await process(dedent`
+    {#each ['one', 'two'] as item}
+      <li>{ item }</li>
+    {/each}
+
+    This is a test { 5 < 6 }
+    { true && false }
+    { string === "string" }
+
+    <svelte:head>
+    <title>Sveltex Test</title>
+    </svelte:head>
+
+    <script>
+      let c = 'a script tag'
+      $: milk = 'cookies'
+      $: pine = 'apple'
+    </script>
+
+    <script>
+        export let fill = 'black'
+    </script>
+
+    Test
+
+
+    <Component cx={3} cy={3} r={3} {fill}>
+      Test
+    </Componet>
+
+
   `)
   expect(input).toMatchSnapshot()
 })

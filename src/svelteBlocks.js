@@ -6,6 +6,11 @@ const closeCurly = '}'
 const tab = '\t'
 const space = ' '
 
+const hash = '#'
+const at = '@'
+const colon = ':'
+const slash = '/'
+
 export default function svelteBlock (options) {
   const parser = this.Parser
   const compiler = this.Compiler
@@ -56,6 +61,11 @@ function attachParser (parser, options) {
     }
 
     if (value.charAt(index) !== openCurly) {
+      return
+    }
+
+    // if the next char is not one of the below it is not a special svelte block
+    if ([hash, at, colon, slash].indexOf(value.charAt(index + 1)) === -1) {
       return
     }
 

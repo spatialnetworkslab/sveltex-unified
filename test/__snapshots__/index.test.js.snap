@@ -23,6 +23,8 @@ exports[`curlies in code blocks are escaped 1`] = `
 </code></pre>"
 `;
 
+exports[`curlies in in-line code are escaped 1`] = `"<p>A normal paragraph with <code>&#123;svelte&#125;</code> syntax</p>"`;
+
 exports[`default container processes correctly 1`] = `"<div class=\\"testClass\\"><p>  some text here</p></div>"`;
 
 exports[`highlight code block html syntax 1`] = `
@@ -34,12 +36,7 @@ exports[`highlight code block html syntax 1`] = `
 </code></pre>"
 `;
 
-exports[`highlight code block syntax 1`] = `
-"<pre class=\\"language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">var</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
-</code></pre>"
-`;
-
-exports[`highlight svelte syntax 1`] = `
+exports[`highlight code block svelte syntax 1`] = `
 "<pre class=\\"language-svelte\\"><code class=\\"language-svelte\\">  <span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span><span
@@ -77,6 +74,11 @@ exports[`highlight svelte syntax 1`] = `
   class=\\"token punctuation\\"
 >&#62;</span></span>
   <span class=\\"token language-javascript\\"><span class=\\"token punctuation\\">&#123;</span><span class=\\"token operator\\">/</span><span class=\\"token keyword\\">if</span><span class=\\"token punctuation\\">&#125;</span></span>
+</code></pre>"
+`;
+
+exports[`highlight code block syntax 1`] = `
+"<pre class=\\"language-js\\"><code class=\\"language-js\\"><span class=\\"token keyword\\">var</span> x <span class=\\"token operator\\">=</span> <span class=\\"token number\\">1</span>
 </code></pre>"
 `;
 
@@ -136,4 +138,25 @@ exports[`process math inline equation 1`] = `
 ><span class=\\"strut\\" style=\\"height:0.64444em;vertical-align:0em;\\"></span><span
   class=\\"mord\\"
 >1</span></span></span></span></span></p>"
+`;
+
+exports[`svelte blocks are processed correctly 1`] = `
+"{#each ['one', 'two'] as item}
+  <li>{ item }</li>
+{/each}
+<p>This is a test { 5 < 6 }
+{ true && false }
+{ string === \\"string\\" }</p>
+<svelte:head>
+<title>Sveltex Test</title>
+</svelte:head>
+<script>
+  let c = 'a script tag'
+  $: milk = 'cookies'
+  $: pine = 'apple'
+</script>
+<script>
+    export let fill = 'black'
+</script>
+<p><Component cx={3} cy={3} r={3} {fill}/></p>"
 `;
