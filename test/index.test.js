@@ -37,6 +37,13 @@ test('process math block equation', async () => {
   expect(input).toMatchSnapshot()
 })
 
+test('process math with curlies', async () => {
+  const input = await process(dedent`
+      Inline equation $\sqrt{x-1}+(1+x)^2$
+  `)
+  expect(input).toMatchSnapshot()
+})
+
 test('highlight code block syntax', async () => {
   const input = await process(dedent`
   \`\`\`js

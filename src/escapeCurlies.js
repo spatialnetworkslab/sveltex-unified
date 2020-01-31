@@ -4,7 +4,7 @@ import findAndReplace from 'hast-util-find-and-replace'
 export default function transform () {
   return function transformer (tree) {
     visit(tree, function (node) {
-      if (node.type === 'element' && node.tagName === 'code') {
+      if (node.type === 'element' && (node.tagName === 'code' || node.tagName === 'math')) {
         findAndReplace(node, {
           '&': '&#38;',
           '{': '&#123;',
@@ -14,6 +14,8 @@ export default function transform () {
           '<': '&#60;',
           '>': '&#62;',
           '`': '&#96;'
+        }, {
+          ignore: ['title', 'script', 'style']
         })
       }
     })
