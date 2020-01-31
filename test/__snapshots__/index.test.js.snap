@@ -141,7 +141,18 @@ exports[`process math inline equation 1`] = `
 `;
 
 exports[`svelte blocks are processed correctly 1`] = `
-"{#each ['one', 'two'] as item}
+"<script>
+
+  let c = 'a script tag'
+  $: milk = 'cookies'
+  $: pine = 'apple'
+
+
+    export let fill = 'black'
+
+</script>
+
+{#each ['one', 'two'] as item}
   <li>{ item }</li>
 {/each}
 <p>This is a test { 5 < 6 }
@@ -150,14 +161,6 @@ exports[`svelte blocks are processed correctly 1`] = `
 <svelte:head>
 <title>Sveltex Test</title>
 </svelte:head>
-<script>
-  let c = 'a script tag'
-  $: milk = 'cookies'
-  $: pine = 'apple'
-</script>
-<script>
-    export let fill = 'black'
-</script>
 <p>Test</p>
 <Component cx={3} cy={3} r={3} {fill}>
   Test
