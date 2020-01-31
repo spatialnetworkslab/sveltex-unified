@@ -26,7 +26,9 @@ export default function csbUpload () {
         node.data.hProperties = {
           src: url,
           sandbox: 'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
-          style: style
+          style: style,
+          className: ['csb'],
+          title: 'CodeSandbox for ' + location
         }
       } catch (e) {
         console.log('ERROR', e)

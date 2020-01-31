@@ -6,7 +6,7 @@ export default function csbBlock (node, config) {
   const params = props[1]
   let style = props[2]
   if (style === undefined) {
-    style = 'width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden'
+    style = 'width:100%; height:500px; overflow:hidden;'
   }
   if (node.children.length > 0) {
     throw new Error('Codesandbox block should not have any content')
