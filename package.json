@@ -1,6 +1,6 @@
 {
   "name": "@snlab/sveltex-unified",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "dist/sveltex-unified.cjs.js",
   "module": "dist/sveltex-unified.esm.js",
