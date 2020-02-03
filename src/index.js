@@ -25,6 +25,7 @@ import escapeCurlies from './escapeCurlies.js'
 import containers from 'remark-containers'
 import csbBlock from './codeSandBoxBlock.js'
 import csbUpload from './codeSandBoxUpload.js'
+import solution from './solutions.js'
 
 // exec code blocks
 import execCodeBlocks from './execCodeBlocks.js'
@@ -48,6 +49,11 @@ export const processor = unified()
         type: 'codesandbox',
         element: 'iframe',
         transform: csbBlock
+      },
+      {
+        type: 'solution',
+        element: 'div',
+        transform: solution
       }
     ]
   })

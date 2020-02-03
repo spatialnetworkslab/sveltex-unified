@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`process html exec echo code block 1`] = `"<div class=\\"solution solutionShow\\"><details><summary>Solution</summary><div class=\\"solutionContent\\"><p>  content</p></div></details></div>"`;
