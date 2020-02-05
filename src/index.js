@@ -26,6 +26,12 @@ import containers from 'remark-containers'
 import csbBlock from './codeSandBoxBlock.js'
 import csbUpload from './codeSandBoxUpload.js'
 import solution from './solutions.js'
+import solutionHide from './solutionhide.js'
+
+// frontmatter
+import frontmatter from 'remark-frontmatter'
+import parseFrontmatter from 'remark-parse-yaml'
+import copyFrontmatter from './frontmatterData.js'
 
 // exec code blocks
 import execCodeBlocks from './execCodeBlocks.js'
@@ -42,6 +48,10 @@ const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); ret
 
 export const processor = unified()
   .use(markdown, { blocks: blocks })
+  .use(frontmatter)
+  .use(parseFrontmatter)
+  .use(copyFrontmatter)
+  // .use(logger)
   .use(containers, {
     default: true,
     custom: [
@@ -57,6 +67,7 @@ export const processor = unified()
       }
     ]
   })
+  .use(solutionHide)
   .use(csbUpload)
   .use(svelteInline)
   .use(svelteBlock)
