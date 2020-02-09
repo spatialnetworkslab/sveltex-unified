@@ -1,6 +1,13 @@
-Sveltex is a Markdown preprocessor for Svelte projects. It allows you to add markdown syntax to your Svelte apps and components. 
+# Sveltex
+Sveltex is a Markdown preprocessor for Svelte projects. It allows you to add markdown syntax to your Svelte apps and components. Similar to MDX, it uses Remark and [Unified](https://unifiedjs.com/) under the hood. 
 
-# Installation and configuration
+This project draws heavy inspiration from a lot of amazing open-source projects:
+- [MDsveX](https://github.com/pngwn/MDsveX) - another Markdown preprocessor for Svelte projects made by [pngwn](https://github.com/pngwn). Built on top of `markdown-it` instead. Likely to be a better choice for most use cases.
+- [Idyll](https://idyll-lang.org/) - much more than just a preprocessor but a language and toolkit for interactive content. Uses React under the hood.
+- [Vuepress](https://vuepress.vuejs.org/) – static site generator based on Vue. Apart from making solid choices for Markdown pre-processing, is a super low-barrier entry to content-heavy web projects based on Markdown.
+- [Unified](https://unifiedjs.com/) – provides building blocks (and syntax trees) that make it easier to transform and reason about (interactive) content.
+
+## Installation and configuration
 
 ```bash
 npm install -D @snlab/sveltex-unified
@@ -22,7 +29,7 @@ export default {
 }
 ```
 
-# Using Sveltex
+## Using Sveltex
 Sveltex supports [generic markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet), including headers, links, code blocks and others.
 
 ```
@@ -45,7 +52,7 @@ Now you don't
 {/if}
 ```
 
-# Executable code
+## Executable code
 Executable code can be declared using the svelte `<script></script>` tag or within additional executable code blocks using the `js exec` tag.
 
 ````markdown
@@ -88,7 +95,7 @@ Contents within `html exec echo` will be displayed in a code block and then rend
 ```
 ````
 
-# Styling html exec echo
+## Styling html exec echo
 
 Unlike all other code blocks, the `html exec echo` block renders twice: once as a regular code block, and once as the actual html content. By default, the two renderings are done linearly one after the other.
 
@@ -105,7 +112,7 @@ These classes can be styled separately using css in the markdown document as fol
 }
 ```
 
-# Code blocks
+## Code blocks
 
 Regular code blocks still work as usual. They come with default Prism syntax highlighting, including for Svelte syntqx
 
@@ -127,11 +134,11 @@ let objects = { cat: 'dogs', fish: 'chips' }
 ```
 ````
 
-# Components
+## Components
 
 Imported Svelte components can also be used within the markdown/Svelte syntax.
 
-# Enable/Disable plugins
+## Enable/Disable plugins
 Sveltex is built on top of the Remark and [Unified](https://unifiedjs.com/) universe. This means that additional plugins and transformers can be added as needed. Apart from exporting a default preprocessor as `sveltex`, we also export individual plugins as well as a convenience function to turn a unified processor into a Svelte pre-processor. To recreate the default sveltex processor, you would use the following unified pipeline
 
 ```js
@@ -172,7 +179,7 @@ const defaultProcessor = unified()
 const sveltex = makeSveltePreprocessor(defaultProcessor) // convert processor to svelte preprocessor
 ```
 
-# Katex and Math Expressions
+## Katex and Math Expressions
 The Sveltex preprocessor supports rendering of math expressions using the [katex](https://katex.org/) syntax.
 
 Inline math expressions can be included in text and html using the katex inline `$` markers.
