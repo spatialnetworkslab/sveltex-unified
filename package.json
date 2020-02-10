@@ -5,7 +5,7 @@
   "main": "dist/sveltex-unified.cjs.js",
   "module": "dist/sveltex-unified.esm.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest -t 'codesandboxplus container processes correctly'",
     "dev": "jest --watch",
     "build": "rollup -c",
     "prepublishOnly": "npm run build"

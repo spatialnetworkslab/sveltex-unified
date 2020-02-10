@@ -1,9 +1,8 @@
 import dedent from 'dedent'
 import { processor } from '../src/index.js'
 
-const process = async (md) => {
-  const result = await processor()
-    .process(md)
+const process = async md => {
+  const result = await processor().process(md)
   return result.toString()
 }
 
@@ -172,6 +171,17 @@ test('svelte shorthand attrs are processed correctly', async () => {
 test('codesandbox container processes correctly', async () => {
   const input = await process(dedent`
     ::: codesandbox ./test/codesandbox/ some?props
+    :::
+  `)
+  expect(input).toMatchSnapshot()
+})
+
+test.only('codesandboxplus container processes correctly', async () => {
+  const input = await process(dedent`
+    ::: codesandboxplus ./test/codesandbox/index.html some?props
+    \`\`\`html
+      <tag />
+    \`\`\`
     :::
   `)
   expect(input).toMatchSnapshot()
