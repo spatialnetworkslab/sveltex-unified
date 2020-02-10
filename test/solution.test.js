@@ -1,9 +1,9 @@
 
 import dedent from 'dedent'
-import { processor } from '../src/index.js'
+import { defaultProcessor } from '../src/index.js'
 
 const process = async (md) => {
-  const result = await processor()
+  const result = await defaultProcessor()
     .process(md)
   return result.toString()
 }

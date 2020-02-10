@@ -302,3 +302,10 @@ exports[`svelte shorthand attrs are processed correctly 1`] = `
   Test
 </Component>"
 `;
+
+exports[`sveltex svelte preprocessor returns expected output 1`] = `
+Object {
+  "code": "<p>Test Content</p>",
+  "map": "",
+}
+`;

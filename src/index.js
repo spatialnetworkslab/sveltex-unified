@@ -9,7 +9,7 @@ import katex from 'rehype-katex'
 
 // syntax highlighting
 import prism from '@mapbox/rehype-prism'
-import svelte from '@snlab/refractor-svelte'
+import svelteSyntax from '@snlab/refractor-svelte'
 
 // svelte blocks
 import svelteBlock from './svelteBlocks.js'
@@ -46,14 +46,21 @@ const blocks = htmlBlocks.concat([
   'svelte:head',
   'svelte:options'
 ])
+
+// replacement of path import
+// from https://stackoverflow.com/a/1203361
+// thank you wallacer!
+function extname (filename) {
+  return filename.substring(filename.lastIndexOf('.'), filename.length) || filename
+}
+
 const logger = () => (tree) => { console.log(JSON.stringify(tree, null, 4)); return tree }
 
-export const processor = unified()
+export const defaultProcessor = unified()
   .use(markdown, { blocks: blocks })
   .use(frontmatter)
   .use(parseFrontmatter)
   .use(copyFrontmatter)
-  // .use(logger)
   .use(containers, {
     default: true,
     custom: [
@@ -85,7 +92,7 @@ export const processor = unified()
   .use(execCodeBlocks)
   .use(remark2rehype, { allowDangerousHTML: true })
   .use(katex)
-  .use(prism, { registerSyntax: [svelte] })
+  .use(prism, { registerSyntax: [svelteSyntax] })
   .use(escapeCurlies)
   .use(html, { allowDangerousHTML: false })
 
@@ -94,31 +101,35 @@ const defaults = {
   pluginOptions: {}
 }
 
-export function sveltex ({
-  extension = '.svelte',
-  pluginOptions = {}
-} = defaults) {
-  return {
-    markup: async ({ content, filename }) => {
-      if (extname(filename) !== extension) return
-      const result = await processor()
-        .process(content)
-      const html = result.toString()
-      return {
-        code: `${html}`,
-        map: ''
-      }
-    },
+export const sveltex = makeSveltePreprocessor(defaultProcessor)
 
-    script: ({ content, filename }) => {},
-
-    style: () => {}
-  }
+// export plugins and other necessary parts for setting up your own processor
+export {
+  blocks, copyFrontmatter, csbBlock, solution,
+  solutionHide, csbUpload, svelteInline, svelteBlock,
+  svelteElementBlock, svelteElementInline, execCodeBlocks,
+  svelteSyntax, escapeCurlies
 }
 
-// replacement of path import
-// from https://stackoverflow.com/a/1203361
-// thank you wallacer!
-function extname (filename) {
-  return filename.substring(filename.lastIndexOf('.'), filename.length) || filename
+// convenience function to create a svelte preprocessor from a unified processor
+export function makeSveltePreprocessor (processor) {
+  return function ({
+    extension = '.svelte',
+    pluginOptions = {}
+  } = defaults) {
+    return {
+      markup: async ({ content, filename }) => {
+        if (extname(filename) !== extension) return
+        const result = await processor()
+          .process(content)
+        const html = result.toString()
+        return {
+          code: `${html}`,
+          map: ''
+        }
+      },
+      script: () => {},
+      style: () => {}
+    }
+  }
 }

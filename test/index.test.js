@@ -1,8 +1,9 @@
 import dedent from 'dedent'
-import { processor } from '../src/index.js'
+import { defaultProcessor, sveltex } from '../src/index.js'
 
-const process = async md => {
-  const result = await processor().process(md)
+const process = async (md) => {
+  const result = await defaultProcessor()
+    .process(md)
   return result.toString()
 }
 
@@ -193,4 +194,13 @@ test('default container processes correctly', async () => {
     :::
   `)
   expect(input).toMatchSnapshot()
+})
+
+test('sveltex svelte preprocessor returns expected output', async () => {
+  const content = dedent`
+    Test Content
+  `
+  const filename = 'App.svelte'
+  const result = await sveltex().markup({ content, filename })
+  expect(result).toMatchSnapshot()
 })
