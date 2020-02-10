@@ -178,9 +178,8 @@ test('codesandbox container processes correctly', async () => {
 
 test.only('codesandboxplus container processes correctly', async () => {
   const input = await process(dedent`
-    ::: codesandboxplus ./test/codesandbox/index.html some?props
+    ::: codesandboxplus ./test/codesandbox/index.html some?props - 1-2
     \`\`\`html
-      <tag />
     \`\`\`
     :::
   `)

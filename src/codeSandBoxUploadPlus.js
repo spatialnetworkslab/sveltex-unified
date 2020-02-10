@@ -18,11 +18,34 @@ export default function csbUploadPlus () {
       }
     })
     for (const { node } of nodesToChange) {
-      const { location, style, params, tag } = node.data.codesandboxplus
+      const { location, style, params, tag, ranges } = node.data.codesandboxplus
       let url
+      console.log(node.children[0])
       try {
         const file = await fs.readFileSync(location)
         node.children[0].value = file.toString()
+        const lines = node.children[0].value.split('\n')
+        ranges.forEach(range => {
+          console.log('[range]', node.children[0])
+          const [beg, end] = range.split('-')
+          if (end) {
+            node.children.push({
+              type: 'heading',
+              depth: 2,
+              children: [{ type: 'text', value: `line ${beg} to ${end}` }]
+            })
+            node.children.push({
+              type: 'code',
+              lang: node.children[0].lang,
+              meta: null,
+              value: lines.slice(beg - 1, end).join('\n')
+            })
+            console.log(node.children)
+          } else {
+            console.log(lines.slice(beg))
+          }
+        })
+
         url = await getSandboxURL(location, params)
       } catch (e) {
         console.log('ERROR', e)
