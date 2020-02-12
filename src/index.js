@@ -83,7 +83,12 @@ export const defaultProcessor = unified()
   })
   .use(solutionHide)
   .use(csbUpload)
-  .use(csbUploadPlus)
+  .use(csbUploadPlus, {
+    /* You can overwrite range legend here
+     * By default its `//<!-- line ${beg} to ${end} -->//\n`
+     */
+    // rangeLegend: (beg, end) => `//<!-- line ${beg} to ${end} -->//\n`
+  })
   .use(svelteInline)
   .use(svelteBlock)
   .use(svelteElementBlock)

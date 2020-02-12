@@ -6,7 +6,8 @@ import glob from 'glob'
 import yaml from 'js-yaml'
 import fetch from 'node-fetch'
 
-export default function csbUploadPlus () {
+export default function csbUploadPlus (options) {
+  const { rangeLegend } = options
   return async function transformer (tree) {
     const nodesToChange = []
     visit(tree, 'codesandboxplus', node => {
@@ -20,32 +21,57 @@ export default function csbUploadPlus () {
     for (const { node } of nodesToChange) {
       const { location, style, params, tag, ranges } = node.data.codesandboxplus
       let url
-      console.log(node.children[0])
       try {
+        // read the file
         const file = await fs.readFileSync(location)
+        // setting code block value to the file string
         node.children[0].value = file.toString()
+        // splitting to get all lines in array
         const lines = node.children[0].value.split('\n')
+        // placeholder for merging lines
+        const mergeLines = []
+        // opening script tag
+        mergeLines.push('<script>\n')
+        // find closing script tag line number
+        const closingScriptTagLineNumber = lines.findIndex(line => line.trim() === '</script>')
+        // script close flag
+        let isScriptClosed = false
+        // for all range pairs
         ranges.forEach(range => {
-          console.log('[range]', node.children[0])
           const [beg, end] = range.split('-')
+          // if beginning line is more than closing tag line, script close the block before
+          if (
+            beg > closingScriptTagLineNumber &&
+                                    !isScriptClosed
+          ) {
+            isScriptClosed = true
+            mergeLines.push('</script>\n')
+          }
           if (end) {
-            node.children.push({
-              type: 'heading',
-              depth: 2,
-              children: [{ type: 'text', value: `line ${beg} to ${end}` }]
-            })
-            node.children.push({
-              type: 'code',
-              lang: node.children[0].lang,
-              meta: null,
-              value: lines.slice(beg - 1, end).join('\n')
-            })
-            console.log(node.children)
+            mergeLines.push(
+              rangeLegend
+                ? rangeLegend(beg, end)
+                : `//<!-- line ${beg} to ${end} -->//\n`
+            )
+            mergeLines.push(
+              ...lines.slice(beg - 1, end)
+            )
           } else {
-            console.log(lines.slice(beg))
+            mergeLines.push(
+              rangeLegend
+                ? rangeLegend(beg, end)
+                : `//<!-- line ${beg} to ${end} -->//\n`
+            )
+            mergeLines.push(lines[beg])
           }
         })
-
+        node.children.push({
+          type: 'code',
+          lang: node.children[0].lang,
+          meta: null,
+          value: mergeLines.join('\n')
+        })
+        // console.log('[range]', node.children[1].value)
         url = await getSandboxURL(location, params)
       } catch (e) {
         console.log('ERROR', e)
