@@ -142,7 +142,8 @@ async function getSandboxURL (directory, params) {
   }
 
   const filesHash = hash(files)
-  const metadataPath = path.join(path.dirname(directoryPath), 'metadata.yml')
+  // dump yaml to the folder that the example resides
+  const metadataPath = path.join(path.dirname(absolutePath), 'metadata.yml')
   let metadata
   if (fs.existsSync(metadataPath)) {
     metadata = yaml.safeLoad(fs.readFileSync(metadataPath, 'utf8'))
