@@ -20,10 +20,18 @@ export default function csbUploadPlus (options) {
     })
     for (const { node } of nodesToChange) {
       const { location, style, params, tag, ranges } = node.data.codesandboxplus
-      let url
+      let sandboxUrl
+      let componentTagName = 'example'
       try {
+        // import path in svelte is different from readFileSync path
+        const dir = location.split('../')[location.split('../').length - 1]
+        // cache sandboxId for use as tag name later
+        const { url, sandboxId } = await getSandboxURL(dir, params)
+        sandboxUrl = url
+        // svelte component is valid only first letter in tag name is capitalied
+        componentTagName = sandboxId.toUpperCase()
         // read the file
-        const file = await fs.readFileSync(location)
+        const file = await fs.readFileSync(dir)
         // setting code block value to the file string
         node.children[0].value = file.toString()
         // splitting to get all lines in array
@@ -33,17 +41,16 @@ export default function csbUploadPlus (options) {
         // opening script tag
         mergeLines.push('<script>\n')
         // find closing script tag line number
-        const closingScriptTagLineNumber = lines.findIndex(line => line.trim() === '</script>')
+        const closingScriptTagLineNumber = lines.findIndex(
+          line => line.trim() === '</script>'
+        )
         // script close flag
         let isScriptClosed = false
         // for all range pairs
         ranges.forEach(range => {
           const [beg, end] = range.split('-')
           // if beginning line is more than closing tag line, script close the block before
-          if (
-            beg > closingScriptTagLineNumber &&
-                                    !isScriptClosed
-          ) {
+          if (beg > closingScriptTagLineNumber && !isScriptClosed) {
             isScriptClosed = true
             mergeLines.push('</script>\n')
           }
@@ -53,10 +60,9 @@ export default function csbUploadPlus (options) {
                 ? rangeLegend(beg, end)
                 : `//<!-- line ${beg} to ${end} -->//\n`
             )
-            mergeLines.push(
-              ...lines.slice(beg - 1, end)
-            )
+            mergeLines.push(...lines.slice(beg - 1, end))
           } else {
+            // *** not tested yet ***
             mergeLines.push(
               rangeLegend
                 ? rangeLegend(beg, end)
@@ -72,7 +78,6 @@ export default function csbUploadPlus (options) {
           value: mergeLines.join('\n')
         })
         // console.log('[range]', node.children[1].value)
-        url = await getSandboxURL(location, params)
       } catch (e) {
         console.log('ERROR', e)
       }
@@ -83,12 +88,37 @@ export default function csbUploadPlus (options) {
           tagName: tag,
           hName: tag,
           hProperties: {
-            src: url,
+            src: sandboxUrl,
             sandbox:
               'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
             style: style,
             className: ['csb'],
             title: 'CodeSandbox for ' + location
+          }
+        }
+      })
+      // insert import path to the beginning line of script block
+      visit(tree, 'root', node => {
+        const [_, theRest] = node.children[0].value.split('<script>')
+        node.children[0].value = [
+          '<script>',
+          ` let ${componentTagName};
+            onMount(async () => {
+            const module = await import("${location}");
+            ${componentTagName} = module.default;
+          })`,
+          theRest
+        ].join('')
+      })
+
+      // insert the imported component after sandbox
+      node.children.push({
+        type: 'component',
+        data: {
+          tagName: 'svelte:component',
+          hName: 'svelte:component',
+          hProperties: {
+            this: `{${componentTagName}}`
           }
         }
       })
@@ -150,5 +180,5 @@ async function getSandboxURL (directory, params) {
     params ? '?' + params : ''
   }`
   console.log('[url]', url)
-  return url
+  return { url, sandboxId: metadata.sandbox_id }
 }
