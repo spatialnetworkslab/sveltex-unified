@@ -12,7 +12,6 @@ export default function csbUploadPlus (options) {
     const nodesToChange = []
     visit(tree, 'codesandboxplus', node => {
       if ('codesandboxplus' in node.data) {
-        console.log('I found code sandbox')
         nodesToChange.push({
           node
         })
@@ -77,7 +76,6 @@ export default function csbUploadPlus (options) {
           meta: null,
           value: mergeLines.join('\n')
         })
-        // console.log('[range]', node.children[1].value)
       } catch (e) {
         console.log('ERROR', e)
       }
@@ -146,10 +144,8 @@ async function getSandboxURL (directory, params) {
   const filesHash = hash(files)
   const metadataPath = path.join(path.dirname(directoryPath), 'metadata.yml')
   let metadata
-  console.log('reading metadata', metadataPath)
   if (fs.existsSync(metadataPath)) {
     metadata = yaml.safeLoad(fs.readFileSync(metadataPath, 'utf8'))
-    console.log('read metadata', metadata)
   } else {
     metadata = {
       sandbox_id: '',
@@ -168,7 +164,6 @@ async function getSandboxURL (directory, params) {
           headers: { 'Content-Type': 'application/json' }
         }
       ).then(res => res.json())
-      console.log('[res]', res)
     } catch (err) {
       console.log(err, 'error')
     }
@@ -179,6 +174,5 @@ async function getSandboxURL (directory, params) {
   const url = `https://codesandbox.io/embed/${metadata.sandbox_id}${
     params ? '?' + params : ''
   }`
-  console.log('[url]', url)
   return { url, sandboxId: metadata.sandbox_id }
 }
