@@ -21,6 +21,8 @@ export default function csbUploadPlus (options) {
       const { location, style, params, tag, ranges } = node.data.codesandboxplus
       let sandboxUrl
       let componentTagName = 'example'
+      // placeholder for merging lines
+      const mergeLines = []
       try {
         // import path in svelte is different from readFileSync path
         const dir = location.split('../')[location.split('../').length - 1]
@@ -35,8 +37,6 @@ export default function csbUploadPlus (options) {
         node.children[0].value = file.toString()
         // splitting to get all lines in array
         const lines = node.children[0].value.split('\n')
-        // placeholder for merging lines
-        const mergeLines = []
         // opening script tag
         mergeLines.push('<script>\n')
         // find closing script tag line number
@@ -70,31 +70,88 @@ export default function csbUploadPlus (options) {
             mergeLines.push(lines[beg])
           }
         })
-        node.children.push({
-          type: 'code',
-          lang: node.children[0].lang,
-          meta: null,
-          value: mergeLines.join('\n')
-        })
       } catch (e) {
         console.log('ERROR', e)
       }
+      /*
+        <div class="example-container">
+            <div class="example-rendered">
+                <!-- svelte component here -->
+            </div>
 
-      node.children.push({
-        type: 'codesandboxplus',
+            <div class="example-code">
+                <!-- full contents of App.svelte -->
+            </div>
+
+            <div class="example-code-highlight">
+                <!-- highlighted contents of App.svelte -->
+            </div>
+
+            <div class="example-csv-link">
+                <a href="link/to/csb">Edit</a>
+            </div>
+        </div>
+      */
+      // add wrapper class to root
+      node.data.hProperties = {
+        className: [componentTagName + '-container']
+      }
+      // by default code section appears first in node.children
+      const codeSection = {
+        type: 'element',
         data: {
-          tagName: tag,
-          hName: tag,
+          hName: 'div',
           hProperties: {
-            src: sandboxUrl,
-            sandbox:
-              'allow-modals allow-forms allow-popups allow-scripts allow-same-origin',
-            style: style,
-            className: ['csb'],
-            title: 'CodeSandbox for ' + location
+            className: [componentTagName + '-code']
           }
-        }
-      })
+        },
+        children: [node.children[0]]
+      }
+      const renderedSection = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [componentTagName + '-rendered']
+          }
+        },
+        children: [
+          // insert the imported component after sandbox
+          {
+            type: 'renderedComponent',
+            data: {
+              tagName: 'svelte:component',
+              hName: 'svelte:component',
+              hProperties: {
+                this: `{${componentTagName}}`
+              }
+            }
+          }
+        ]
+      }
+      const sandboxUrlSection = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [componentTagName + '-csv-link']
+          }
+        },
+        children: [
+          {
+            type: 'element',
+            data: {
+              tagName: 'a',
+              hName: 'a',
+              hProperties: {
+                src: sandboxUrl
+              }
+            }
+          }
+        ]
+      }
+      const sectionsInOrder = [renderedSection, codeSection, sandboxUrlSection]
+      node.children = sectionsInOrder
       // insert import path to the beginning line of script block
       visit(tree, 'root', node => {
         const [_, theRest] = node.children[0].value.split('<script>')
@@ -107,18 +164,6 @@ export default function csbUploadPlus (options) {
           })`,
           theRest
         ].join('')
-      })
-
-      // insert the imported component after sandbox
-      node.children.push({
-        type: 'component',
-        data: {
-          tagName: 'svelte:component',
-          hName: 'svelte:component',
-          hProperties: {
-            this: `{${componentTagName}}`
-          }
-        }
       })
     }
     return tree
