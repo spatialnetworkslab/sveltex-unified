@@ -150,21 +150,22 @@ export default function csbUploadPlus (options) {
           }
         ]
       }
-      const sectionsInOrder = [renderedSection, codeSection, sandboxUrlSection]
+
+      // artificially create a code exec block
+      const importRenderingExample = {
+        type: 'code',
+        lang: 'js',
+        meta: 'exec',
+        value: `import ${componentTagName} from '${location}'`
+
+      }
+      const sectionsInOrder = [
+        importRenderingExample,
+        renderedSection,
+        codeSection,
+        sandboxUrlSection
+      ]
       node.children = sectionsInOrder
-      // insert import path to the beginning line of script block
-      visit(tree, 'root', node => {
-        const [_, theRest] = node.children[0].value.split('<script>')
-        node.children[0].value = [
-          '<script>',
-          ` let ${componentTagName};
-            onMount(async () => {
-            const module = await import("${location}");
-            ${componentTagName} = module.default;
-          })`,
-          theRest
-        ].join('')
-      })
     }
     return tree
   }
