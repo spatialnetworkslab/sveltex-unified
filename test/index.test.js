@@ -177,12 +177,12 @@ test('codesandbox container processes correctly', async () => {
   expect(input).toMatchSnapshot()
 })
 
-test.only('codesandboxplus container processes correctly', async () => {
+test('codesandboxplus container processes correctly', async () => {
   const input = await process(dedent`
     <script> 
       import somthing from 'something'
     </script>
-    ::: codesandboxplus ./test/codesandbox/index.svelte some?props - 2-3
+    ::: codesandboxplus ./test/codesandboxplus/index.svelte some?props - 2-3
     \`\`\`svelte
     \`\`\`
     :::
