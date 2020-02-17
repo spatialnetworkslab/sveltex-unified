@@ -84,6 +84,7 @@ export const defaultProcessor = unified()
   .use(solutionHide)
   .use(csbUpload)
   .use(csbUploadPlus, {
+    rangeLegend: (beg, end) => ''
     /* You can overwrite range legend here
      * By default its `//<!-- line ${beg} to ${end} -->//\n`
      */
