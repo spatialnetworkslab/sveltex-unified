@@ -18,7 +18,7 @@ export default function csbUploadPlus (options) {
       }
     })
     for (const { node } of nodesToChange) {
-      const { location, params, ranges } = node.data.codesandboxplus
+      const { location, ranges } = node.data.codesandboxplus
       let sandboxUrl
       let componentTagName = 'example'
       // placeholder for merging lines
@@ -27,7 +27,7 @@ export default function csbUploadPlus (options) {
         // import path in svelte is different from readFileSync path
         const dir = location.split('../')[location.split('../').length - 1]
         // cache sandboxId for use as tag name later
-        const { url, sandboxId } = await getSandboxURL(dir, params)
+        const { url, sandboxId } = await getSandboxURL(dir)
         sandboxUrl = url
         // svelte component is valid only first letter in tag name is capitalied
         componentTagName += sandboxId.toUpperCase()
@@ -204,7 +204,7 @@ export default function csbUploadPlus (options) {
   }
 }
 
-async function getSandboxURL (directory, params) {
+async function getSandboxURL (directory) {
   const cwd = process.cwd()
   const directoryPath = path.join(cwd, path.dirname(directory))
   const absolutePath = path.join(directoryPath, '**')
@@ -251,8 +251,6 @@ async function getSandboxURL (directory, params) {
     metadata.hash = filesHash
     fs.writeFileSync(metadataPath, yaml.safeDump(metadata), 'utf8')
   }
-  const url = `https://codesandbox.io/embed/${metadata.sandbox_id}${
-    params ? '?' + params : ''
-  }`
+  const url = `https://codesandbox.io/s/${metadata.sandbox_id}`
   return { url, sandboxId: metadata.sandbox_id }
 }
