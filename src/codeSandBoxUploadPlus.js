@@ -30,7 +30,7 @@ export default function csbUploadPlus (options) {
         const { url, sandboxId } = await getSandboxURL(dir, params)
         sandboxUrl = url
         // svelte component is valid only first letter in tag name is capitalied
-        componentTagName = sandboxId.toUpperCase()
+        componentTagName += sandboxId.toUpperCase()
         // read the file
         const file = await fs.readFileSync(dir)
         // setting code block value to the file string
@@ -99,7 +99,7 @@ export default function csbUploadPlus (options) {
       */
       // add wrapper class to root
       node.data.hProperties = {
-        className: [componentTagName + '-container']
+        className: [componentTagName + '-container', 'csbp-container']
       }
       // by default code section appears first in node.children
       const codeSection = {
@@ -107,7 +107,7 @@ export default function csbUploadPlus (options) {
         data: {
           hName: 'div',
           hProperties: {
-            className: [componentTagName + '-code']
+            className: [componentTagName + '-code', 'csbp-code']
           }
         },
         children: [node.children[0]]
@@ -160,7 +160,7 @@ export default function csbUploadPlus (options) {
         data: {
           hName: 'div',
           hProperties: {
-            className: [componentTagName + '-csv-link']
+            className: [componentTagName + '-csb-link', 'csbp-csb-link']
           }
         },
         children: [
@@ -170,9 +170,15 @@ export default function csbUploadPlus (options) {
               tagName: 'a',
               hName: 'a',
               hProperties: {
-                src: sandboxUrl
+                href: sandboxUrl
               }
-            }
+            },
+            children: [
+              {
+                type: 'span',
+                value: 'Click here to code sandbox'
+              }
+            ]
           }
         ]
       }
