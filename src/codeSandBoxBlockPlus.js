@@ -4,7 +4,7 @@ export default function csbBlockPlus (node, config) {
   const props = tokenizeWords(config)
   const [location, range = ''] = props
   node.data.codesandboxplus = {
-    tag: 'iframe',
+    tag: 'div',
     location,
     range
   }

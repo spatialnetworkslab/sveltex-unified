@@ -22,6 +22,7 @@ export default function csbUploadPlus (options) {
       let componentTagName = 'example'
       // placeholder for snippet
       const snippet = []
+      let fileContents = ''
       try {
         // import path in svelte is different from readFileSync path
         const dir = location.split('../')[location.split('../').length - 1]
@@ -33,9 +34,9 @@ export default function csbUploadPlus (options) {
         // read the file
         const file = await fs.readFileSync(dir)
         // setting code block value to the file string
-        node.children[0].value = file.toString()
+        fileContents = file.toString()
         // splitting to get all lines in array
-        const lines = node.children[0].value.split('\n')
+        const lines = fileContents.split('\n')
 
         const parsedRange = new MultiRange(range)
         if (parsedRange.min() > lines.length || parsedRange.max() > lines.length) {
@@ -85,7 +86,14 @@ export default function csbUploadPlus (options) {
             className: [componentTagName + '-code', 'csbp-code']
           }
         },
-        children: [node.children[0]]
+        children: [
+          {
+            type: 'code',
+            lang: 'svelte',
+            meta: null,
+            value: fileContents
+          }
+        ]
       }
       const codeSnippetSection = {
         type: 'element',
@@ -101,7 +109,7 @@ export default function csbUploadPlus (options) {
         children: [
           {
             type: 'code',
-            lang: node.children[0].lang,
+            lang: 'svelte',
             meta: null,
             value: snippet.join('\n')
           }
