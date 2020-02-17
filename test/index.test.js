@@ -177,19 +177,6 @@ test('codesandbox container processes correctly', async () => {
   expect(input).toMatchSnapshot()
 })
 
-test('codesandboxplus container processes correctly', async () => {
-  const input = await process(dedent`
-    <script> 
-      import somthing from 'something'
-    </script>
-    ::: codesandboxplus ./test/codesandboxplus/index.svelte some?props - 2-3
-    \`\`\`svelte
-    \`\`\`
-    :::
-  `)
-  expect(input).toMatchSnapshot()
-})
-
 test('default container processes correctly', async () => {
   const input = await process(dedent`
     ::: div testClass

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`codesandboxplus container processes correctly 1`] = `
+"<script>
+import ZES4P from './test/codesandboxplus/index.svelte'
+</script>
+
+<div class=\\"ZES4P-container\\"><div class=\\"ZES4P-rendered\\"><svelte:component this=\\"{ZES4P}\\"></svelte:component></div><div
+  class=\\"ZES4P-code\\"
+><pre class=\\"language-svelte language-svelte\\"><code class=\\"language-svelte language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token script\\"
+><span class=\\"token language-javascript\\">
+
+$<span class=\\"token punctuation\\">:</span><span
+  class=\\"token console class-name\\"
+>console</span><span
+  class=\\"token punctuation\\"
+>.</span><span
+  class=\\"token method function property-access\\"
+>log</span><span
+  class=\\"token punctuation\\"
+>(</span><span class=\\"token string\\">&#34;hello world&#34;</span><span
+  class=\\"token punctuation\\"
+>)</span>
+</span></span><span
+  class=\\"token tag\\"
+><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+</code></pre></div><div
+  class=\\"ZES4P-csv-link\\"
+><a src=\\"https://codesandbox.io/embed/zes4p?some?props\\"></a></div></div>"
+`;
