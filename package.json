@@ -30,6 +30,7 @@
     "is-alphabetical": "^1.0.4",
     "jest": "^25.1.0",
     "js-yaml": "^3.13.1",
+    "multi-integer-range": "^4.0.8",
     "node-fetch": "^2.6.0",
     "object-hash": "^2.0.1",
     "rehype-katex": "^2.0.0",

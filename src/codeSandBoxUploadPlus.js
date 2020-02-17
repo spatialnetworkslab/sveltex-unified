@@ -5,7 +5,7 @@ import path from 'path'
 import glob from 'glob'
 import yaml from 'js-yaml'
 import fetch from 'node-fetch'
-
+import MultiRange from 'multi-integer-range'
 export default function csbUploadPlus (options) {
   const { rangeLegend } = options
   return async function transformer (tree) {
@@ -47,13 +47,19 @@ export default function csbUploadPlus (options) {
         let isScriptClosed = false
         // for all range pairs
         ranges.forEach(range => {
-          const [beg, end] = range.split('-')
-          // if beginning line is more than closing tag line, script close the block before
+          const ranges = new MultiRange(range)
+          const rangesArray = ranges.toArray()
+          const beg = rangesArray[0]
+          const end = rangesArray[rangesArray.length - 1]
+          if (beg > lines.length || end > lines.length) {
+            return
+          }
           if (beg > closingScriptTagLineNumber && !isScriptClosed) {
+            // if beginning line is more than closing tag line, script close the block before
             isScriptClosed = true
             mergeLines.push('</script>\n')
           }
-          if (end) {
+          if (beg !== end) {
             mergeLines.push(
               rangeLegend
                 ? rangeLegend(beg, end)
@@ -61,11 +67,10 @@ export default function csbUploadPlus (options) {
             )
             mergeLines.push(...lines.slice(beg - 1, end))
           } else {
-            // *** not tested yet ***
             mergeLines.push(
               rangeLegend
-                ? rangeLegend(beg, end)
-                : `//<!-- line ${beg} to ${end} -->//\n`
+                ? rangeLegend(beg, null)
+                : `//<!-- line ${beg} -->//\n`
             )
             mergeLines.push(lines[beg])
           }
@@ -107,6 +112,27 @@ export default function csbUploadPlus (options) {
         },
         children: [node.children[0]]
       }
+      const codeSnippetSection = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [
+              componentTagName + '-code-snippets',
+              'csbp-code-snippets'
+            ]
+          }
+        },
+        children: [
+          {
+            type: 'code',
+            lang: node.children[0].lang,
+            meta: null,
+            value: mergeLines.join('\n')
+          }
+        ]
+      }
+
       const renderedSection = {
         type: 'element',
         data: {
@@ -163,6 +189,7 @@ export default function csbUploadPlus (options) {
         importRenderingExample,
         renderedSection,
         codeSection,
+        codeSnippetSection,
         sandboxUrlSection
       ]
       node.children = sectionsInOrder
