@@ -176,7 +176,7 @@ export default function csbUploadPlus (options) {
             children: [
               {
                 type: 'span',
-                value: 'Click here to code sandbox'
+                value: 'Edit on CodeSandBox'
               }
             ]
           }

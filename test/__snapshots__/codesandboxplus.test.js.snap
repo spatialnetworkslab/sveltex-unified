@@ -2,12 +2,12 @@
 
 exports[`codesandboxplus container processes correctly 1`] = `
 "<script>
-import ZES4P from './test/codesandboxplus/index.svelte'
+import exampleWK6KM from './test/codesandboxplus/App.svelte'
 </script>
 
-<div class=\\"ZES4P-container\\"><div class=\\"ZES4P-rendered\\"><svelte:component this=\\"{ZES4P}\\"></svelte:component></div><div
-  class=\\"ZES4P-code\\"
-><pre class=\\"language-svelte language-svelte\\"><code class=\\"language-svelte language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+<div class=\\"exampleWK6KM-container csbp-container\\"><div class=\\"exampleWK6KM-rendered\\"><svelte:component this=\\"{exampleWK6KM}\\"></svelte:component></div><div
+  class=\\"exampleWK6KM-code csbp-code\\"
+><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span><span
   class=\\"token script\\"
@@ -36,6 +36,18 @@ $<span class=\\"token punctuation\\">:</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
 </code></pre></div><div
-  class=\\"ZES4P-csv-link\\"
-><a src=\\"https://codesandbox.io/embed/zes4p?some?props\\"></a></div></div>"
+  class=\\"exampleWK6KM-code-snippets csbp-code-snippets\\"
+><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+
+//<span class=\\"token comment\\">&#60;!-- line 1 to 3 --&#62;</span>//
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+
+$:console.log(&#34;hello world&#34;)
+</code></pre></div><div
+  class=\\"exampleWK6KM-csb-link csbp-csb-link\\"
+><a href=\\"https://codesandbox.io/s/wk6km\\">Edit on CodeSandBox</a></div></div>"
 `;

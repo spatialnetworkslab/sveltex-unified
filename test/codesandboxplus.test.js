@@ -9,7 +9,7 @@ const process = async md => {
 
 test('codesandboxplus container processes correctly', async () => {
   const input = await process(dedent`
-    ::: codesandboxplus ./test/codesandboxplus/index.svelte some?props - 1-3
+    ::: codesandboxplus ./test/codesandboxplus/App.svelte 1-3
     \`\`\`svelte
     \`\`\`
     :::
