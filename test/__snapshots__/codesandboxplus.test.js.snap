@@ -2,11 +2,11 @@
 
 exports[`codesandboxplus container processes correctly 1`] = `
 "<script>
-import exampleWK6KM from './test/codesandboxplus/App.svelte'
+import exampleFCEF2 from './test/codesandboxplus/App.svelte'
 </script>
 
-<div class=\\"exampleWK6KM-container csbp-container\\"><div class=\\"exampleWK6KM-rendered\\"><svelte:component this=\\"{exampleWK6KM}\\"></svelte:component></div><div
-  class=\\"exampleWK6KM-code csbp-code\\"
+<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
+  class=\\"exampleFCEF2-code csbp-code\\"
 ><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span><span
@@ -35,19 +35,99 @@ $<span class=\\"token punctuation\\">:</span><span
 >&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h1</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
-</code></pre></div><div
-  class=\\"exampleWK6KM-code-snippets csbp-code-snippets\\"
-><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h2</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h2</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
-
-
-<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h3</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h3</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+</code></pre></div><div
+  class=\\"exampleFCEF2-code-snippets csbp-code-snippets\\"
+><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
 
 $:console.log(&#34;hello world&#34;)
 </code></pre></div><div
-  class=\\"exampleWK6KM-csb-link csbp-csb-link\\"
-><a href=\\"https://codesandbox.io/s/wk6km\\">Edit on CodeSandBox</a></div></div>"
+  class=\\"exampleFCEF2-csb-link csbp-csb-link\\"
+><a href=\\"https://codesandbox.io/s/fcef2\\">Edit on CodeSandBox</a></div></div>"
+`;
+
+exports[`codesandboxplus container with split line numbers 1`] = `
+"<script>
+import exampleFCEF2 from './test/codesandboxplus/App.svelte'
+</script>
+
+<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
+  class=\\"exampleFCEF2-code csbp-code\\"
+><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span><span
+  class=\\"token script\\"
+><span class=\\"token language-javascript\\">
+
+$<span class=\\"token punctuation\\">:</span><span
+  class=\\"token console class-name\\"
+>console</span><span
+  class=\\"token punctuation\\"
+>.</span><span
+  class=\\"token method function property-access\\"
+>log</span><span
+  class=\\"token punctuation\\"
+>(</span><span class=\\"token string\\">&#34;hello world&#34;</span><span
+  class=\\"token punctuation\\"
+>)</span>
+</span></span><span
+  class=\\"token tag\\"
+><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>script</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h2</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h2</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h3</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h3</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+</code></pre></div><div
+  class=\\"exampleFCEF2-code-snippets csbp-code-snippets\\"
+><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h1</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+
+/* SNIP */
+
+<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
+  class=\\"token punctuation\\"
+>&#62;</span></span>
+</code></pre></div><div
+  class=\\"exampleFCEF2-csb-link csbp-csb-link\\"
+><a href=\\"https://codesandbox.io/s/fcef2\\">Edit on CodeSandBox</a></div></div>"
 `;

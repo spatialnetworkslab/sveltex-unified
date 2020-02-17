@@ -7,7 +7,6 @@ import yaml from 'js-yaml'
 import fetch from 'node-fetch'
 import MultiRange from 'multi-integer-range'
 export default function csbUploadPlus (options) {
-  const { rangeLegend } = options
   return async function transformer (tree) {
     const nodesToChange = []
     visit(tree, 'codesandboxplus', node => {
@@ -18,11 +17,11 @@ export default function csbUploadPlus (options) {
       }
     })
     for (const { node } of nodesToChange) {
-      const { location, ranges } = node.data.codesandboxplus
+      const { location, range } = node.data.codesandboxplus
       let sandboxUrl
       let componentTagName = 'example'
-      // placeholder for merging lines
-      const mergeLines = []
+      // placeholder for snippet
+      const snippet = []
       try {
         // import path in svelte is different from readFileSync path
         const dir = location.split('../')[location.split('../').length - 1]
@@ -37,44 +36,20 @@ export default function csbUploadPlus (options) {
         node.children[0].value = file.toString()
         // splitting to get all lines in array
         const lines = node.children[0].value.split('\n')
-        // opening script tag
-        mergeLines.push('<script>\n')
-        // find closing script tag line number
-        const closingScriptTagLineNumber = lines.findIndex(
-          line => line.trim() === '</script>'
-        )
-        // script close flag
-        let isScriptClosed = false
-        // for all range pairs
-        ranges.forEach(range => {
-          const ranges = new MultiRange(range)
-          const rangesArray = ranges.toArray()
-          const beg = rangesArray[0]
-          const end = rangesArray[rangesArray.length - 1]
-          if (beg > lines.length || end > lines.length) {
-            return
+
+        const parsedRange = new MultiRange(range)
+        if (parsedRange.min() > lines.length || parsedRange.max() > lines.length) {
+          // range extends beyond lines
+          return
+        }
+        let prevLine = parsedRange.min()
+        for (const line of parsedRange) {
+          if (line - prevLine > 1) {
+            snippet.push('\n/* SNIP */\n')
           }
-          if (beg > closingScriptTagLineNumber && !isScriptClosed) {
-            // if beginning line is more than closing tag line, script close the block before
-            isScriptClosed = true
-            mergeLines.push('</script>\n')
-          }
-          if (beg !== end) {
-            mergeLines.push(
-              rangeLegend
-                ? rangeLegend(beg, end)
-                : `//<!-- line ${beg} to ${end} -->//`
-            )
-            mergeLines.push(...lines.slice(beg - 1, end))
-          } else {
-            mergeLines.push(
-              rangeLegend
-                ? rangeLegend(beg, null)
-                : `//<!-- line ${beg} -->//`
-            )
-            mergeLines.push(lines[beg])
-          }
-        })
+          snippet.push(lines[line - 1])
+          prevLine = line
+        }
       } catch (e) {
         console.log('ERROR', e)
       }
@@ -128,7 +103,7 @@ export default function csbUploadPlus (options) {
             type: 'code',
             lang: node.children[0].lang,
             meta: null,
-            value: mergeLines.join('\n')
+            value: snippet.join('\n')
           }
         ]
       }

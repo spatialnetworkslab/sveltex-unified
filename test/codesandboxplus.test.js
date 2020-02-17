@@ -16,3 +16,13 @@ test('codesandboxplus container processes correctly', async () => {
   `)
   expect(input).toMatchSnapshot()
 })
+
+test('codesandboxplus container with split line numbers', async () => {
+  const input = await process(dedent`
+    ::: codesandboxplus ./test/codesandboxplus/App.svelte 6,9
+    \`\`\`svelte
+    \`\`\`
+    :::
+  `)
+  expect(input).toMatchSnapshot()
+})
