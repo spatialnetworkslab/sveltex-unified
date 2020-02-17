@@ -18,7 +18,7 @@ export default function csbUploadPlus (options) {
       }
     })
     for (const { node } of nodesToChange) {
-      const { location, style, params, tag, ranges } = node.data.codesandboxplus
+      const { location, params, ranges } = node.data.codesandboxplus
       let sandboxUrl
       let componentTagName = 'example'
       // placeholder for merging lines
@@ -63,14 +63,14 @@ export default function csbUploadPlus (options) {
             mergeLines.push(
               rangeLegend
                 ? rangeLegend(beg, end)
-                : `//<!-- line ${beg} to ${end} -->//\n`
+                : `//<!-- line ${beg} to ${end} -->//`
             )
             mergeLines.push(...lines.slice(beg - 1, end))
           } else {
             mergeLines.push(
               rangeLegend
                 ? rangeLegend(beg, null)
-                : `//<!-- line ${beg} -->//\n`
+                : `//<!-- line ${beg} -->//`
             )
             mergeLines.push(lines[beg])
           }
