@@ -210,7 +210,7 @@ async function getSandboxURL (directory, params) {
   const absolutePath = path.join(directoryPath, '**')
   const fileNames = glob.sync(absolutePath, {
     nodir: true,
-    ignore: ['**/node_modules/**', 'metadata.yml']
+    ignore: ['**/node_modules/**', '.metadata']
   }) // ignore node_modules
   const files = {}
   for (let index = 0; index < fileNames.length; index++) {
@@ -222,7 +222,7 @@ async function getSandboxURL (directory, params) {
 
   const filesHash = hash(files)
   // dump yaml to the folder that the example resides
-  const metadataPath = path.join(path.dirname(absolutePath), 'metadata.yml')
+  const metadataPath = path.join(path.dirname(absolutePath), '.metadata')
   let metadata
   if (fs.existsSync(metadataPath)) {
     metadata = yaml.safeLoad(fs.readFileSync(metadataPath, 'utf8'))
