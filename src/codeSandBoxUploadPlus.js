@@ -39,7 +39,10 @@ export default function csbUploadPlus (options) {
         const lines = fileContents.split('\n')
 
         const parsedRange = new MultiRange(range)
-        if (parsedRange.min() > lines.length || parsedRange.max() > lines.length) {
+        if (
+          parsedRange.min() > lines.length ||
+          parsedRange.max() > lines.length
+        ) {
           // range extends beyond lines
           return
         }
@@ -55,19 +58,26 @@ export default function csbUploadPlus (options) {
         console.log('ERROR', e)
       }
       /*
-        <div class="example-container">
-            <div class="example-rendered">
+        <div class="csbp-container">
+            <div class="csbp-rendered">
                 <!-- svelte component here -->
             </div>
-
-            <div class="example-code">
-                <!-- full contents of App.svelte -->
+            <div class="csbp-code-tabs">
+              <div class="tab">
+                <input type="radio" id="tab-1" name="tab-group-1" checked>
+                <label for="tab-1">Full code</label>
+                <div class="csbp-full-code">
+                  <!-- full contents of App.svelte -->
+                </div>
+              </div>
+              <div class="tab">
+                <input type="radio" id="tab-2" name="tab-group-1">
+                <label for="tab-2">Snippet</label>
+                <div class="csbp-code-highlight">
+                    <!-- highlighted contents of App.svelte -->
+                </div>
+              </div>
             </div>
-
-            <div class="example-code-highlight">
-                <!-- highlighted contents of App.svelte -->
-            </div>
-
             <div class="example-csv-link">
                 <a href="link/to/csb">Edit</a>
             </div>
@@ -77,13 +87,14 @@ export default function csbUploadPlus (options) {
       node.data.hProperties = {
         className: [componentTagName + '-container', 'csbp-container']
       }
+
       // by default code section appears first in node.children
       const codeSection = {
         type: 'element',
         data: {
           hName: 'div',
           hProperties: {
-            className: [componentTagName + '-code', 'csbp-code']
+            className: [componentTagName + '-code', 'csbp-content', 'csbp-code']
           }
         },
         children: [
@@ -102,6 +113,7 @@ export default function csbUploadPlus (options) {
           hProperties: {
             className: [
               componentTagName + '-code-snippets',
+              'csbp-content',
               'csbp-code-snippets'
             ]
           }
@@ -116,12 +128,105 @@ export default function csbUploadPlus (options) {
         ]
       }
 
+      // <div class="csbp-tab">
+      //   <input type="radio" id="tab-1" name="tab-group-1" checked>
+      //     <label for="tab-1">Full code</label>
+      //     <div class="csbp-code-snippets">
+      //       <!-- full contents of App.svelte -->
+      //             </div>
+      //           </div>
+      const fullCodeTab = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [
+              componentTagName + '-fullcode-tab',
+              'csbp-tab',
+              'csbp-fullcode-tab'
+            ]
+          }
+        },
+        children: [
+          {
+            type: 'element',
+            data: {
+              hName: 'input',
+              hProperties: {
+                type: 'radio',
+                id: 'tab-1',
+                name: 'tab-group-1',
+                checked: true
+              }
+            }
+          },
+          {
+            type: 'element',
+            data: {
+              hName: 'label',
+              hProperties: {
+                for: 'tab-1'
+              }
+            },
+            children: [
+              {
+                type: 'element',
+                value: 'Full code'
+              }
+            ]
+          },
+          codeSection
+        ]
+      }
+
+      const snippetTab = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [
+              componentTagName + '-snippet-tab',
+              'csbp-tab',
+              'csbp-snippet-tab'
+            ]
+          }
+        },
+        children: [
+          {
+            type: 'element',
+            data: {
+              hName: 'input',
+              hProperties: {
+                type: 'radio',
+                id: 'tab-2',
+                name: 'tab-group-1'
+              }
+            }
+          },
+          {
+            type: 'label',
+            data: {
+              hName: 'label',
+              hProperties: {
+                for: 'tab-2'
+              }
+            },
+            children: [
+              {
+                type: 'element',
+                value: 'Key snippets'
+              }
+            ]
+          },
+          codeSnippetSection
+        ]
+      }
       const renderedSection = {
         type: 'element',
         data: {
           hName: 'div',
           hProperties: {
-            className: [componentTagName + '-rendered']
+            className: [componentTagName + '-rendered', 'csbp-rendered']
           }
         },
         children: [
@@ -143,7 +248,11 @@ export default function csbUploadPlus (options) {
         data: {
           hName: 'div',
           hProperties: {
-            className: [componentTagName + '-csb-link', 'csbp-csb-link']
+            className: [
+              componentTagName + '-csb-link',
+              'csbp-tab',
+              'csbp-csb-link'
+            ]
           }
         },
         children: [
@@ -165,21 +274,27 @@ export default function csbUploadPlus (options) {
           }
         ]
       }
-
+      const csbpCodeTabs = {
+        type: 'element',
+        data: {
+          hName: 'div',
+          hProperties: {
+            className: [componentTagName + '-code-tabs', 'csbp-code-tabs']
+          }
+        },
+        children: [fullCodeTab, snippetTab, sandboxUrlSection]
+      }
       // artificially create a code exec block
       const importRenderingExample = {
         type: 'code',
         lang: 'js',
         meta: 'exec',
         value: `import ${componentTagName} from '${location}'`
-
       }
       const sectionsInOrder = [
         importRenderingExample,
         renderedSection,
-        codeSection,
-        codeSnippetSection,
-        sandboxUrlSection
+        csbpCodeTabs
       ]
       node.children = sectionsInOrder
     }
@@ -195,6 +310,7 @@ async function getSandboxURL (directory) {
     nodir: true,
     ignore: ['**/node_modules/**', '.metadata']
   }) // ignore node_modules
+  // console.log('Writing to', directoryPath)
   const files = {}
   for (let index = 0; index < fileNames.length; index++) {
     const fileName = fileNames[index]
