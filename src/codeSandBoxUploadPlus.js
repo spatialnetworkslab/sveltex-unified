@@ -154,8 +154,8 @@ export default function csbUploadPlus (options) {
               hName: 'input',
               hProperties: {
                 type: 'radio',
-                id: 'tab-1',
-                name: 'tab-group-1',
+                id: 'tab-1-' + componentTagName,
+                name: 'tab-group-' + componentTagName,
                 checked: true
               }
             }
@@ -165,7 +165,7 @@ export default function csbUploadPlus (options) {
             data: {
               hName: 'label',
               hProperties: {
-                for: 'tab-1'
+                for: 'tab-1-' + componentTagName
               }
             },
             children: [
@@ -198,8 +198,8 @@ export default function csbUploadPlus (options) {
               hName: 'input',
               hProperties: {
                 type: 'radio',
-                id: 'tab-2',
-                name: 'tab-group-1'
+                id: 'tab-2-' + componentTagName,
+                name: 'tab-group-' + componentTagName
               }
             }
           },
@@ -208,7 +208,7 @@ export default function csbUploadPlus (options) {
             data: {
               hName: 'label',
               hProperties: {
-                for: 'tab-2'
+                for: 'tab-2-' + componentTagName
               }
             },
             children: [
