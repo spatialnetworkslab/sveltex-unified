@@ -171,7 +171,7 @@ export default function csbUploadPlus (options) {
             children: [
               {
                 type: 'element',
-                value: 'Full code'
+                value: 'Code'
               }
             ]
           },
