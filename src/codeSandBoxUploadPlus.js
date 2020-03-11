@@ -262,7 +262,9 @@ export default function csbUploadPlus (options) {
               tagName: 'a',
               hName: 'a',
               hProperties: {
-                href: sandboxUrl
+                href: sandboxUrl,
+                rel: 'noopener noreferrer',
+                target: '_blank'
               }
             },
             children: [
