@@ -5,8 +5,17 @@ exports[`codesandboxplus container processes correctly 1`] = `
 import exampleFCEF2 from './test/codesandboxplus/App.svelte'
 </script>
 
-<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
-  class=\\"exampleFCEF2-code csbp-code\\"
+<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered csbp-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
+  class=\\"exampleFCEF2-code-tabs csbp-code-tabs\\"
+><div class=\\"exampleFCEF2-fullcode-tab csbp-tab csbp-fullcode-tab\\"><input
+  type=\\"radio\\"
+  id=\\"tab-1-exampleFCEF2\\"
+  name=\\"tab-group-exampleFCEF2\\"
+  checked
+><label
+  for=\\"tab-1-exampleFCEF2\\"
+>Code</label><div
+  class=\\"exampleFCEF2-code csbp-content csbp-code\\"
 ><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span><span
@@ -50,16 +59,24 @@ $<span class=\\"token punctuation\\">:</span><span
 >&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
-</code></pre></div><div
-  class=\\"exampleFCEF2-code-snippets csbp-code-snippets\\"
+</code></pre></div></div><div
+  class=\\"exampleFCEF2-snippet-tab csbp-tab csbp-snippet-tab\\"
+><input type=\\"radio\\" id=\\"tab-2-exampleFCEF2\\" name=\\"tab-group-exampleFCEF2\\"><label
+  for=\\"tab-2-exampleFCEF2\\"
+>Key snippets</label><div
+  class=\\"exampleFCEF2-code-snippets csbp-content csbp-code-snippets\\"
 ><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
 
 $:console.log(&#34;hello world&#34;)
-</code></pre></div><div
-  class=\\"exampleFCEF2-csb-link csbp-csb-link\\"
-><a href=\\"https://codesandbox.io/s/fcef2\\">Edit on CodeSandBox</a></div></div>"
+</code></pre></div></div><div
+  class=\\"exampleFCEF2-csb-link csbp-tab csbp-csb-link\\"
+><a
+  href=\\"https://codesandbox.io/s/fcef2\\"
+  rel=\\"noopener noreferrer\\"
+  target=\\"_blank\\"
+>Edit on CodeSandBox</a></div></div></div>"
 `;
 
 exports[`codesandboxplus container with split line numbers 1`] = `
@@ -67,8 +84,17 @@ exports[`codesandboxplus container with split line numbers 1`] = `
 import exampleFCEF2 from './test/codesandboxplus/App.svelte'
 </script>
 
-<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
-  class=\\"exampleFCEF2-code csbp-code\\"
+<div class=\\"exampleFCEF2-container csbp-container\\"><div class=\\"exampleFCEF2-rendered csbp-rendered\\"><svelte:component this=\\"{exampleFCEF2}\\"></svelte:component></div><div
+  class=\\"exampleFCEF2-code-tabs csbp-code-tabs\\"
+><div class=\\"exampleFCEF2-fullcode-tab csbp-tab csbp-fullcode-tab\\"><input
+  type=\\"radio\\"
+  id=\\"tab-1-exampleFCEF2\\"
+  name=\\"tab-group-exampleFCEF2\\"
+  checked
+><label
+  for=\\"tab-1-exampleFCEF2\\"
+>Code</label><div
+  class=\\"exampleFCEF2-code csbp-content csbp-code\\"
 ><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>script</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span><span
@@ -112,8 +138,12 @@ $<span class=\\"token punctuation\\">:</span><span
 >&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
-</code></pre></div><div
-  class=\\"exampleFCEF2-code-snippets csbp-code-snippets\\"
+</code></pre></div></div><div
+  class=\\"exampleFCEF2-snippet-tab csbp-tab csbp-snippet-tab\\"
+><input type=\\"radio\\" id=\\"tab-2-exampleFCEF2\\" name=\\"tab-group-exampleFCEF2\\"><label
+  for=\\"tab-2-exampleFCEF2\\"
+>Key snippets</label><div
+  class=\\"exampleFCEF2-code-snippets csbp-content csbp-code-snippets\\"
 ><pre class=\\"language-svelte\\"><code class=\\"language-svelte\\"><span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;</span>h1</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h1</span><span
@@ -127,7 +157,11 @@ $<span class=\\"token punctuation\\">:</span><span
 >&#62;</span></span>Hello world<span class=\\"token tag\\"><span class=\\"token tag\\"><span class=\\"token punctuation\\">&#60;/</span>h4</span><span
   class=\\"token punctuation\\"
 >&#62;</span></span>
-</code></pre></div><div
-  class=\\"exampleFCEF2-csb-link csbp-csb-link\\"
-><a href=\\"https://codesandbox.io/s/fcef2\\">Edit on CodeSandBox</a></div></div>"
+</code></pre></div></div><div
+  class=\\"exampleFCEF2-csb-link csbp-tab csbp-csb-link\\"
+><a
+  href=\\"https://codesandbox.io/s/fcef2\\"
+  rel=\\"noopener noreferrer\\"
+  target=\\"_blank\\"
+>Edit on CodeSandBox</a></div></div></div>"
 `;
