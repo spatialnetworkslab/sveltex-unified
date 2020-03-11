@@ -290,7 +290,7 @@ export default function csbUploadPlus (options) {
         type: 'code',
         lang: 'js',
         meta: 'exec',
-        value: `import ${componentTagName} from '${location}'`
+        value: `import ${componentTagName} from '${path.resolve(location)}'`
       }
       const sectionsInOrder = [
         importRenderingExample,
