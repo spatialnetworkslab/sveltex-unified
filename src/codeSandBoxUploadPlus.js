@@ -24,8 +24,7 @@ export default function csbUploadPlus (options) {
       const snippet = []
       let fileContents = ''
       try {
-        // import path in svelte is different from readFileSync path
-        const dir = location.split('../')[location.split('../').length - 1]
+        const dir = location
         // cache sandboxId for use as tag name later
         const { url, sandboxId } = await getSandboxURL(dir)
         sandboxUrl = url
