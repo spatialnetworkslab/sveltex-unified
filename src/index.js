@@ -25,8 +25,6 @@ import escapeCurlies from './escapeCurlies.js'
 import containers from 'remark-containers'
 import csbBlock from './codeSandBoxBlock.js'
 import csbUpload from './codeSandBoxUpload.js'
-import csbBlockPlus from './codeSandBoxBlockPlus.js'
-import csbUploadPlus from './codeSandBoxUploadPlus.js'
 import solution from './solutions.js'
 import solutionHide from './solutionhide.js'
 
@@ -70,11 +68,6 @@ export const defaultProcessor = unified()
         transform: csbBlock
       },
       {
-        type: 'codesandboxplus',
-        element: 'div',
-        transform: csbBlockPlus
-      },
-      {
         type: 'solution',
         element: 'div',
         transform: solution
@@ -83,7 +76,6 @@ export const defaultProcessor = unified()
   })
   .use(solutionHide)
   .use(csbUpload)
-  .use(csbUploadPlus)
   .use(svelteInline)
   .use(svelteBlock)
   .use(svelteElementBlock)
