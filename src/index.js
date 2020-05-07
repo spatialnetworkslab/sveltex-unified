@@ -103,6 +103,12 @@ export {
   svelteSyntax, escapeCurlies
 }
 
+// re-export imports to make setting up your own processor easier
+export {
+  markdown, frontmatter, parseFrontmatter, containers,
+  math, remark2rehype, katex, prism, html
+}
+
 // convenience function to create a svelte preprocessor from a unified processor
 export function makeSveltePreprocessor (processor) {
   return function ({
